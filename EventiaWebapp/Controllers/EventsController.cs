@@ -9,17 +9,17 @@ namespace EventiaWebapp.Controllers
             return View();
         }
 
-        public IActionResult MyEvents()
+        public IActionResult MyEvents(int id)
         {
-            return View("MyEvents");
+            return View("MyEvents", id);
         }
-        public IActionResult JoinEvent()
+        public IActionResult JoinEvent(int id)
         {
             return View("JoinEvent");
         }
-        public IActionResult ConfirmEvent()
+        public IActionResult ConfirmEvent(int id)
         {
-            return View("ConfirmEvent");
+            return View("ConfirmEvent", id);
         }
     }
 }
