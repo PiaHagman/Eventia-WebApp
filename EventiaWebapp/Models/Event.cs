@@ -17,6 +17,6 @@ namespace EventiaWebapp.Models
 
         [Required]
         public Organizer Organizer { get; set; }
-        public ICollection<Attendee> Attendees { get; set; }
+        public Attendee Attendee { get; set; }
     }
 }
