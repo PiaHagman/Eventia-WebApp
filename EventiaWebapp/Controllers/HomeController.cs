@@ -6,7 +6,7 @@ namespace EventiaWebapp.Controllers
     {
         public IActionResult Index()
         {
-            return Content("Under uppbyggnad");
+            return View();
         }
     }
 }

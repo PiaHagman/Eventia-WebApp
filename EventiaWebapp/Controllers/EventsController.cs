@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Reflection.Metadata.Ecma335;
+using EventiaWebapp.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EventiaWebapp.Controllers
 {
@@ -13,7 +15,7 @@ namespace EventiaWebapp.Controllers
         {
             return View("MyEvents", id);
         }
-        public IActionResult JoinEvent(int id)
+        public IActionResult JoinEvent(Event evnt, Attendee attendee )
         {
             return View("JoinEvent");
         }
