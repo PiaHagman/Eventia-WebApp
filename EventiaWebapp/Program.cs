@@ -1,7 +1,10 @@
+using EventiaWebapp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<EventsHandler>();
 
 var app = builder.Build();
 

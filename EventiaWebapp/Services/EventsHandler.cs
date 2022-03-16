@@ -1,44 +1,25 @@
 ﻿using EventiaWebapp.Models;
-using Microsoft.EntityFrameworkCore;
 
-namespace EventiaWebapp.Services.Data
+namespace EventiaWebapp.Services
 {
-    internal class EventiaDbContext : DbContext
+    public class EventsHandler
     {
-        public DbSet<Attendee> Attendees { get; set; }
-        public DbSet<Event> Events { get; set; }
-        public DbSet<Organizer> Organizers { get; set; }
+        public List<Event>? EventList { get; init; }
+        public List<Organizer> Organizers { get; init; }
+        private Attendee _attendee;
 
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //Använda konstruktor?
+        public EventsHandler()
         {
-            modelBuilder.Entity<Attendee>()
-                .HasIndex(e => e.Email).IsUnique();
-
-            modelBuilder.Entity<Organizer>()
-                .HasIndex(e => e.Name).IsUnique();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=EventiaDb");
-        }
-
-        public void Seed()
-        {
-            List<Organizer> organizers = new List<Organizer>
+            Organizers = new List<Organizer>
             {
                 new() {Name = "Ticketmaster", Email = "info@ticketmaster.se", PhoneNumber = "0771-707070"},
                 new() {Name = "Live Nation", Email = "info@livenation.se", PhoneNumber = "08-6650100"},
                 new() {Name = "Got Event", Email = "gotevent@gotevent.se", PhoneNumber = "031-3684500"}
             };
 
-            List<Attendee> attendees = new List<Attendee>
-            {
-                new () {Name = "Pia", Email = "hagman.pia@gmail.com", PhoneNumber = "070-4664291"}
-            };
-
-            List<Event> events = new List<Event>
+            EventList = new List<Event>
             {
                 new()
                 {
@@ -48,7 +29,7 @@ namespace EventiaWebapp.Services.Data
                     Place = "GÖTEBORG - Trädgårdsföreningen",
                     Date = new DateTime(2022, 08, 07),
                     SeatsAvailable = 5000,
-                    Organizer = organizers[0],
+                    Organizer = Organizers[0],
                 },
                 new () 
                 {
@@ -57,7 +38,7 @@ namespace EventiaWebapp.Services.Data
                     Place = "GÖTEBORG - Ullevi",
                     Date = new DateTime(2022, 06, 10),
                     SeatsAvailable = 40000,
-                    Organizer = organizers[0]
+                    Organizer = Organizers[0]
                 },
                 new ()
                 {
@@ -66,7 +47,7 @@ namespace EventiaWebapp.Services.Data
                     Place = "STOCKHOLM - Friends Arena",
                     Date = new DateTime(2022, 07, 22),
                     SeatsAvailable = 40000,
-                    Organizer = organizers[1]   
+                    Organizer = Organizers[1]   
                 },
                 new ()
                 {
@@ -75,7 +56,7 @@ namespace EventiaWebapp.Services.Data
                     Place = "STOCKHOLM - Cirkus",
                     Date = new DateTime(2022, 06, 01),
                     SeatsAvailable = 2000,
-                    Organizer = organizers[1]
+                    Organizer = Organizers[1]
                 },
                 new ()
                 {
@@ -84,7 +65,7 @@ namespace EventiaWebapp.Services.Data
                     Place = "GÖTEBORG - Scandinavium",
                     Date = new DateTime(2022, 05, 13),
                     SeatsAvailable = 20000,
-                    Organizer = organizers[2]
+                    Organizer = Organizers[2]
                 },
                 new ()
                 {
@@ -93,17 +74,33 @@ namespace EventiaWebapp.Services.Data
                     Place = "GÖTEBORG - Scandinavium",
                     Date = new DateTime(2022, 03, 17),
                     SeatsAvailable = 20000,
-                    Organizer = organizers[2]
+                    Organizer = Organizers[2]
                 },
             };
+        }
+        
+        //Metod som returnerar alla events
+        public List<Event> GetEvents()
+        {
+            return EventList;
+        }
 
-            AddRange(organizers);
+        //Metod som returnerar ett default deltagarobjekt (alltid samma i denna uppgift)
+        public Attendee GetAttendee()
+        {
+            return _attendee;
+        }
 
-            AddRange(attendees);
-
-            AddRange(events);
-            
-            SaveChanges();
+        //Metod som registrerar ett givet deltagarobjekt med ett givet eventobjekt
+        public bool AttendEvent()
+        {
+            //using var ctx = new EventiaDbContext();
+            return true;
+        }
+        //Metod som returnerar en lista på alla events som ett givet deltagarobjekt deltar i
+        public List<Event> GetMyEvents()
+        {
+            throw new NotImplementedException();
         }
     }
 }
