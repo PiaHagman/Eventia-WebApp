@@ -1,17 +1,20 @@
 ﻿using EventiaWebapp.Models;
+using EventiaWebapp.Services.Data;
 
 namespace EventiaWebapp.Services
 {
     public class EventsHandler
     {
+        private EventiaDbContext _eventiaDbContext;
         public List<Event>? EventList { get; init; }
         public List<Organizer> Organizers { get; init; }
-        private Attendee _attendee;
 
 
-        //Använda konstruktor?
-        public EventsHandler()
+        //tjänsten tar in de andra tjänster den behöver för att kunna fungera i konstruktorn
+        public EventsHandler(EventiaDbContext ctx)  
         {
+            _eventiaDbContext = ctx;
+
             Organizers = new List<Organizer>
             {
                 new() {Name = "Ticketmaster", Email = "info@ticketmaster.se", PhoneNumber = "0771-707070"},
@@ -88,7 +91,8 @@ namespace EventiaWebapp.Services
         //Metod som returnerar ett default deltagarobjekt (alltid samma i denna uppgift)
         public Attendee GetAttendee()
         {
-            return _attendee;
+            //return _attendee;
+            throw new NotImplementedException();
         }
 
         //Metod som registrerar ett givet deltagarobjekt med ett givet eventobjekt

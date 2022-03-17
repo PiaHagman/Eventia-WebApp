@@ -2,7 +2,9 @@
 @*Flytta till _ViewImports?*@
 @inject EventsHandler _eventsHandler
 
-
+@{
+    ViewData["Title"] = "Events";
+}
 
 @{
     int counter = 0;
@@ -21,7 +23,7 @@
                         <p>@item.Description</p>
                         <div class="accordion-eventDetails">
                             <p><b>@item.Place</b>  |  @item.Date</p>
-                            <a class="btn btn-info my-btn" asp-controller="Events" asp-action="JoinEvent">Join</a>
+                            <a class="btn btn-info my-btn" asp-page="/Join" asp-route-id="@item.Id">Join</a> 
                         </div>
                     </div>
                 </div>
