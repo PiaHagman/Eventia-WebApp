@@ -17,8 +17,24 @@ namespace EventiaWebapp.Pages
         
         public void OnGet(int id)
         {
-            evnt = _eventsHandler.GetEvents().Find(e => e.Id == id);
+            evnt = _eventsHandler.GetEvents().Find(e => e.EventId == id);
 
+        }
+
+        public IActionResult OnPost(int id)
+        {
+            var eventExists = _eventsHandler.AttendEvent(id);
+
+            if (eventExists)
+            {
+                return RedirectToPage("ConfirmedEvent", 1);
+                    
+            }
+            else
+            {
+                return NotFound("404");
+            }
+            
         }
     }
 }

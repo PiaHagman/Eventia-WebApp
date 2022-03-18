@@ -1,8 +1,20 @@
 ﻿@page "{id}"
+@inject EventsHandler _eventsHandler
 
 @model EventiaWebapp.Pages.JoinModel
 @{
-    
+    ViewData["Title"] = "Events";
 }
 
-@Model.evnt.Title
+/@*under kontruktion. Fixa nytt kort från Bootstrap*@
+
+<div>
+    <div class="card my-card" id="card-webbsidor">
+            <img src="/Images/mobil.jpg" class="card-img-top img-laptop" alt="">
+            <div class="card-body">
+                <h5 class="card-title">@Model.evnt.Title</h5>
+                <p class="card-text">@Model.evnt.Description</p>
+                <form method="post" asp-route-id=@Model.evnt.EventId><button class="btn btn-info my-btn">Confirm Booking</button></form>
+            </div>
+        </div>
+</div>

@@ -1,17 +1,19 @@
-﻿
+﻿@using System.Security.Cryptography.X509Certificates
+
 @*Flytta till _ViewImports?*@
 @inject EventsHandler _eventsHandler
 
 @{
     ViewData["Title"] = "Events";
+    List<Event> eventList = _eventsHandler.GetEvents();
 }
 
 @{
     int counter = 0;
     <div class="my-container">
     <div class="accordion accordion-flush my-accordion" id="accordionFlushExample">
-        @foreach (var item in _eventsHandler.EventList)
-        {
+        @foreach (var item in eventList)
+    {
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading-@counter">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-@counter" aria-expanded="false" aria-controls="flush-collapse-@counter">
@@ -23,7 +25,7 @@
                         <p>@item.Description</p>
                         <div class="accordion-eventDetails">
                             <p><b>@item.Place</b>  |  @item.Date</p>
-                            <a class="btn btn-info my-btn" asp-page="/Join" asp-route-id="@item.Id">Join</a> 
+                            <a class="btn btn-info my-btn" asp-page="/Join" asp-route-id="@item.EventId">Join</a> 
                         </div>
                     </div>
                 </div>
