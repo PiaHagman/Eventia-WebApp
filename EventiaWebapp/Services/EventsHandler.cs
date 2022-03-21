@@ -52,6 +52,7 @@ namespace EventiaWebapp.Services
                 var attendee = ctx.Attendees.Include(a => a.Events).FirstOrDefault();
 
                 attendee.Events.Add(evnt);
+                
 
                 /*ctx.Update(attendee);*/
                 ctx.SaveChanges();

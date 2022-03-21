@@ -17,19 +17,15 @@ builder.Services.AddDbContext<EventiaDbContext>(options =>
 
 //AddScoped - en databasconction per användare, en per http request
 builder.Services.AddScoped<DatabaseHandler>();
+
+//Funkar inte
 //builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var database = scope.ServiceProvider
-        .GetRequiredService<DatabaseHandler>();
 
-    database.RecreateAndSeed();
-    
-}
 
+app.UseRouting();
 app.MapControllerRoute(
     "myEvents",
     "events/myevents/{attId?}",
@@ -41,5 +37,25 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var database = scope.ServiceProvider
+        .GetRequiredService<DatabaseHandler>();
+
+    if (app.Environment.IsProduction())
+    {
+        await database.CreateIfNotExists();
+    }
+
+    if (app.Environment.IsDevelopment())
+    {
+        await database.CreateAndSeedIfNotExist();
+    }
+
+    
+}
 
 app.Run();

@@ -11,34 +11,37 @@ namespace EventiaWebapp.Services
         {
             this.ctx = ctx;
         }
-        public void RecreateAndSeed()
+        public async Task RecreateAndSeed()
         {
-            ctx.Database.EnsureDeleted();
-            ctx.Database.EnsureCreated();
-            Seed();
+            await Recreate();
+            await Seed();
 
         }
 
-        public void Recreate()
+        public async Task Recreate()
         {
-            ctx.Database.EnsureDeleted();
-            ctx.Database.EnsureCreated();
+            await ctx.Database.EnsureDeletedAsync();
+            await ctx.Database.EnsureCreatedAsync();
         }
 
 
-        public void CreateIfNotExists()
+        public async Task CreateIfNotExists()
         {
-            ctx.Database.EnsureCreated();
+            await ctx.Database.EnsureCreatedAsync();
         }
 
         //developerMode
-        public void CreateAndSeedIfNotExist()
+        public async Task CreateAndSeedIfNotExist()
         {
-            ctx.Database.EnsureCreated();
-            Seed();
+            bool didCreateDatabase = await ctx.Database.EnsureCreatedAsync();
+            if (didCreateDatabase)
+            {
+                await Seed();
+            }
         }
 
-        public void Seed()
+        
+        public async Task Seed()
         {
             List<Organizer> organizers = new List<Organizer>
                 {
@@ -121,13 +124,13 @@ namespace EventiaWebapp.Services
                     },
                 };
 
-            ctx.AddRange(organizers);
+            await ctx.AddRangeAsync(organizers);
 
-            ctx.AddRange(attendees);
+            await ctx.AddRangeAsync(attendees);
 
-            ctx.AddRange(events);
+            await ctx.AddRangeAsync(events);
 
-            ctx.SaveChanges();
+            await ctx.SaveChangesAsync();
         }
     }
 }

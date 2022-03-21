@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IWebHostEnvironment _environment
+
+<!DOCTYPE html>
 <html lang="en">
 <html>
 <head>
@@ -12,7 +14,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
-    @* @await RenderSectionAsync("bottom_of_head", false);*@
 
 </head>
 <body>
@@ -28,6 +29,10 @@
                     <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a class="nav-link" asp-controller="Events" asp-action="Index">Events</a></li>
                     <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events</a></li>
+                    @if (_environment.IsDevelopment())
+                    {
+                        <li><a class="nav-link" asp-page="ResetDatabase">ResetPage</a></li>
+                    }
                 </ul>
                 <a class="btn btn-info my-btn" asp-controller="Login" asp-action="Index">Log in</a>
             </div>
@@ -133,12 +138,12 @@
 
     .my-card{
         margin-bottom: 25px;
-        width: 500px
+        width: 500px;
+        text-align: center;
         }
 
-    .my-card:hover {
-         
-     
+    .confirm-btn {
+        max-width: 300px !important;
     }
    
 
