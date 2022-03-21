@@ -15,30 +15,25 @@ builder.Services.AddScoped<EventsHandler>();
 builder.Services.AddDbContext<EventiaDbContext>(options =>
     options.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=EventiaDb"));
 
+//AddScoped - en databasconction per användare, en per http request
+builder.Services.AddScoped<DatabaseHandler>();
+//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-    SeedTestData.Initialize(services); //Services är en IServiceProvider 
+    var database = scope.ServiceProvider
+        .GetRequiredService<DatabaseHandler>();
+
+    database.RecreateAndSeed();
+    
 }
 
 app.MapControllerRoute(
     "myEvents",
     "events/myevents/{attId?}",
     new { controller = "Events", action = "MyEvents" });
-
-
-
-/*app.MapControllerRoute(
-    "joinEvent",
-    "events/join/{eventId}",
-    new { controller = "Events", action = "JoinEvent" });
-
-app.MapControllerRoute(
-    "confirmEvent",
-    "events/confirm",
-    new { controller = "Events", action = "ConfirmEvent" });*/
 
 
 app.MapControllerRoute(

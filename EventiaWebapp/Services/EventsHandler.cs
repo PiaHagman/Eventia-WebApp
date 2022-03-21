@@ -12,7 +12,6 @@ namespace EventiaWebapp.Services
 
 
         //tjänsten tar in de andra tjänster den behöver för att kunna fungera i konstruktorn
-        //TODO Kolla av om Märtas variant är bättre än min - båda funkar!
         public EventsHandler(EventiaDbContext context)
         {
             ctx = context;

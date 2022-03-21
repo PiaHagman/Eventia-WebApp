@@ -1,40 +1,62 @@
-﻿using EventiaWebapp.Services.Data;
+﻿using EventiaWebapp.Models;
+using EventiaWebapp.Services.Data;
 
-namespace EventiaWebapp.Models
+namespace EventiaWebapp.Services
 {
-
-    //Är inte detta en tjänst som då bör ligga i den mappen?
-    public class SeedTestData
+    public class DatabaseHandler
     {
-        //IServiceProvider är handen som plockar upp ett objekt ur påsen som i
-        //sin tur tar med sig alla de object/tjänster den behöver
-        public static void Initialize(IServiceProvider serviceProvider)
+        private readonly EventiaDbContext ctx;
+
+        public DatabaseHandler(EventiaDbContext ctx)
         {
-            //Om tjänsten inte finns kommer vi få ett exception som kastas
-            using (var ctx = serviceProvider.GetRequiredService<EventiaDbContext>())
-            {
-                ctx.Database.EnsureDeleted();
-                ctx.Database.EnsureCreated();
+            this.ctx = ctx;
+        }
+        public void RecreateAndSeed()
+        {
+            ctx.Database.EnsureDeleted();
+            ctx.Database.EnsureCreated();
+            Seed();
+
+        }
+
+        public void Recreate()
+        {
+            ctx.Database.EnsureDeleted();
+            ctx.Database.EnsureCreated();
+        }
 
 
+        public void CreateIfNotExists()
+        {
+            ctx.Database.EnsureCreated();
+        }
 
-                List<Organizer> organizers = new List<Organizer>
+        //developerMode
+        public void CreateAndSeedIfNotExist()
+        {
+            ctx.Database.EnsureCreated();
+            Seed();
+        }
+
+        public void Seed()
+        {
+            List<Organizer> organizers = new List<Organizer>
                 {
                     new() {Name = "Ticketmaster", Email = "info@ticketmaster.se", PhoneNumber = "0771-707070"},
                     new() {Name = "Live Nation", Email = "info@livenation.se", PhoneNumber = "08-6650100"},
                     new() {Name = "Got Event", Email = "gotevent@gotevent.se", PhoneNumber = "031-3684500"}
                 };
 
-                List<Attendee> attendees = new List<Attendee>
+            List<Attendee> attendees = new List<Attendee>
                 {
                     new() {Name = "Pia", Email = "hagman.pia@gmail.com", PhoneNumber = "070-4664291"}
                 };
 
-                List<Event> events = new List<Event>
+            List<Event> events = new List<Event>
                 {
                     new()
                     {
-                        
+
                         Title = "Veronica Maggio",
                         Description =
                             "Veronica Maggio är en av landets största popstjärnor och ligger bakom stora hits som ”Hela huset”, ”Sergels torg”, ”Jag kommer” och ”Välkommen in”",
@@ -45,7 +67,7 @@ namespace EventiaWebapp.Models
                     },
                     new()
                     {
-                        
+
                         Title = "Laleh",
                         Description =
                             "Ingen annan artist representerar hela Sverige på samma storslagna sätt som Laleh, med sina nu dussintals hits som känns lika klassiska som moderna. ”Live Tomorrow”, ”En Stund På Jorden”, ”Some Die Young”, ”Bara Få Va Mig Själv”, ”Goliat” och nu senast ”Det kommer bli bra”!",
@@ -56,7 +78,7 @@ namespace EventiaWebapp.Models
                     },
                     new()
                     {
-                        
+
                         Title = "Lady Gaga",
                         Description =
                             "Lady Gaga, som både vunnit Grammys och Golden Globe samt nominerats till en Oscar, är en helt unik artist. Hon har sålt över 30 miljoner album och 150 miljoner singlar, vilket gör henne till en av de bäst säljande artisterna genom tiderna. ",
@@ -67,7 +89,7 @@ namespace EventiaWebapp.Models
                     },
                     new()
                     {
-                       
+
                         Title = "Melody Gardot",
                         Description =
                             "Melody behöver ingen närmare presentation för Sverige. Hon har själv på ett utomordentligt sätt presenterat sig för den svenska publiken under de senaste åren via sina album, TV-program och flera utsålda och hyllade konserter. ",
@@ -78,7 +100,7 @@ namespace EventiaWebapp.Models
                     },
                     new()
                     {
-                        
+
                         Title = "Miriam Bryant",
                         Description =
                             "Efter en längtan att spela live inför en publik igen ger sig Miriam Bryant äntligen ut på vägarna tillsammans med sitt band i början av nästa år. När hon återvänder till Scandinavium är det med den senaste skivan ”PS jag hatar dig” i bagaget. Albumet är hennes första på svenska där hon återigen bevisar sin styrka i både sång och text.",
@@ -99,14 +121,13 @@ namespace EventiaWebapp.Models
                     },
                 };
 
-                ctx.AddRange(organizers);
+            ctx.AddRange(organizers);
 
-                ctx.AddRange(attendees);
+            ctx.AddRange(attendees);
 
-                ctx.AddRange(events);
+            ctx.AddRange(events);
 
-                ctx.SaveChanges();
-            }
+            ctx.SaveChanges();
         }
     }
 }
