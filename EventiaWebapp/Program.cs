@@ -12,10 +12,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<EventsHandler>();
 
 //Registers the given context as a service in the IServiceCollection
-builder.Services.AddDbContext<EventiaDbContext>();
-
-/*( options =>
-    options.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=EventiaDb"));*/
+builder.Services.AddDbContext<EventiaDbContext>(options =>
+    options.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=EventiaDb"));
 
 var app = builder.Build();
 
@@ -30,7 +28,9 @@ app.MapControllerRoute(
     "events/myevents/{attId?}",
     new { controller = "Events", action = "MyEvents" });
 
-app.MapControllerRoute(
+
+
+/*app.MapControllerRoute(
     "joinEvent",
     "events/join/{eventId}",
     new { controller = "Events", action = "JoinEvent" });
@@ -38,7 +38,7 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     "confirmEvent",
     "events/confirm",
-    new { controller = "Events", action = "ConfirmEvent" });
+    new { controller = "Events", action = "ConfirmEvent" });*/
 
 
 app.MapControllerRoute(
@@ -46,8 +46,5 @@ app.MapControllerRoute(
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapRazorPages();
-
-
-
 
 app.Run();
