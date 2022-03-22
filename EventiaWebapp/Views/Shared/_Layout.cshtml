@@ -23,12 +23,12 @@
         <nav class="navbar navbar-expand " >
             <div class="container-md">
                 <div class="navbar-header">
-                    <a class="navbar-brand logo" asp-controller="Home" asp-action="Index"</a>
+                    <a class="navbar-brand logo" asp-controller="Home" asp-action="Index">Eventia</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a class="nav-link" asp-controller="Events" asp-action="Index">Events</a></li>
-                    <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events</a></li>
+                    <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents" asp-route-id="1">My Events</a></li>
                     @if (_environment.IsDevelopment())
                     {
                         <li><a class="nav-link" asp-page="/ResetDatabase">ResetPage</a></li>
@@ -172,6 +172,11 @@
 
     .card-header, .card-footer {
         padding-top: 20px;
+    }
+
+    .my-eventlist {
+        padding: 10px;
+        width: 1000px;
     }
 
     .confirm-btn {

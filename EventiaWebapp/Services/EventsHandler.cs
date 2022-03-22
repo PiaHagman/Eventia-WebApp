@@ -1,4 +1,5 @@
-﻿using EventiaWebapp.Models;
+﻿using System.Collections.Immutable;
+using EventiaWebapp.Models;
 using EventiaWebapp.Services.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,36 +8,43 @@ namespace EventiaWebapp.Services
     public class EventsHandler
     {
         private EventiaDbContext ctx;
-        public List<Event>? EventList { get; set; }
-        public List<Organizer> Organizers { get; set; }
-
-
+      
         //tjänsten tar in de andra tjänster den behöver för att kunna fungera i konstruktorn
         public EventsHandler(EventiaDbContext context)
         {
             ctx = context;
-
         }
 
         //Metod som returnerar alla events
         public List<Event> GetEvents()
         {
             using var ctx = this.ctx;
-            EventList = ctx.Events
-                .Include(e => e.Organizer).ToList();
+            var eventList = ctx.Events
+                .Include(e => e.Organizer)
+                .ToList();
 
-            return EventList;
+            return eventList;
         }
 
         //Metod som returnerar ett default deltagarobjekt (alltid samma i denna uppgift)
-        public Attendee GetAttendee()
+        public Attendee GetAttendee(int id)
         {
-            //return _attendee;
-            throw new NotImplementedException();
+            using var ctx = this.ctx;
+            var query = ctx.Attendees
+                .Include(a => a.Events)
+                .ThenInclude(e => e.Organizer);
+
+            Attendee attendee = query.FirstOrDefault();
+
+            if (attendee == null)
+            {
+                return null;
+            }
+            return attendee;
         }
 
         //Metod som registrerar ett givet deltagarobjekt med ett givet eventobjekt
-        public bool AttendEvent(int eventId)
+        public bool AttendEvent(int eventId, int id)
         {
             using var ctx = this.ctx;
 
@@ -53,9 +61,7 @@ namespace EventiaWebapp.Services
                 var attendee = ctx.Attendees.Include(a => a.Events).FirstOrDefault();
 
                 attendee.Events.Add(evnt);
-                
-
-                /*ctx.Update(attendee);*/
+               
                 ctx.SaveChanges();
 
                 return true;
@@ -64,9 +70,15 @@ namespace EventiaWebapp.Services
             return false;
         }
         //Metod som returnerar en lista på alla events som ett givet deltagarobjekt deltar i
-        public List<Event> GetMyEvents()
+        public List<Event> GetMyEvents(int id)
         {
-            throw new NotImplementedException();
+            var attendee = GetAttendee(id);
+
+
+            var myEvents = attendee.Events;
+            
+            return myEvents.ToList();
+
         }
     }
 }

@@ -17,7 +17,9 @@
                 <h1 class="card-title">@Model.evnt.Title</h1>
                 <p class="card-text">@Model.evnt.Description</p>
                 <p><i>Tickets available: @Model.evnt.SeatsAvailable</i></p>
-                <form method="post" asp-route-evtId=@Model.evnt.Id><button class="btn btn-info my-btn confirm-btn">Confirm Booking</button></form>
+                <form method="post" asp-route-evtId="@Model.evnt.Id">
+                    <button class="btn btn-info my-btn confirm-btn">Confirm Booking</button>
+                </form>
                
                 </div>
             <div class="card-footer text-muted">

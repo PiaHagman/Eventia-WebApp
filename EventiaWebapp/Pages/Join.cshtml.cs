@@ -23,12 +23,13 @@ namespace EventiaWebapp.Pages
 
         public IActionResult OnPost(int evtId)
         {
-            var eventExists = _eventsHandler.AttendEvent(evtId);
+            var attendeeId = 1;
+            var eventExists = _eventsHandler.AttendEvent(evtId, attendeeId);
 
             if (eventExists)
             {
                 return RedirectToPage("ConfirmedEvent", new {eventId = evtId});
-
+                                     
             }
             else
             {
