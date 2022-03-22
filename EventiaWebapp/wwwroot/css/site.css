@@ -1,0 +1,151 @@
+html {
+    background-color: #FCF6F5FF;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #E6CCB5;
+    max-width: 1200px;
+    margin: auto;
+    color: #5b0e2d;
+    position: relative;
+    min-height: 100vh;
+}
+
+header {
+    display: block;
+    background-color: #BAA896;
+    padding: 10px 20px;
+    width: 100%;
+    z-index: 2;
+}
+
+.my-header {
+    position: fixed;
+    top: 0;
+    max-width: 1200px;
+}
+
+.logo, h1 {
+    font-family: 'Sigmar One', cursive;
+    color: #5b0e2d !important;
+}
+
+.nav > li a {
+    color: #5b0e2d;
+}
+
+    .nav > li a:hover {
+        font-weight: bold;
+        color: #5b0e2d;
+    }
+
+.my-btn {
+    background-color: #E38B75;
+    color: #FCF6F5FF;
+    border: none;
+    width: 100px;
+    transition: none;
+}
+
+    .my-btn:hover {
+        background-color: #5b0e2d;
+        color: #FCF6F5FF;
+    }
+
+    .my-btn:after {
+        color: #FCF6F5FF;
+        background-color: green;
+        box-shadow: none;
+    }
+
+    .my-btn:focus {
+        box-shadow: none !important;
+    }
+
+.my-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 100px;
+}
+
+.main-content {
+    margin: 50px 0;
+    width: 800px;
+    text-align: center;
+}
+
+    .main-content h1, .main-content p {
+        padding: 20px;
+    }
+
+    .main-content a {
+        margin: 10px;
+    }
+
+.my-accordion {
+    width: 80%;
+    background-color: #ffccb0;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #BAA896;
+}
+
+.accordion-button:focus {
+    border: none;
+    color: #5b0e2d;
+    box-shadow: none;
+}
+
+.accordion-eventDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 50px;
+}
+
+.my-card {
+    margin-bottom: 25px;
+    width: 800px;
+    text-align: center;
+}
+
+    .my-card h3, p {
+        padding: 0px 70px;
+        color: #5b0e2d;
+    }
+
+    .my-card h1 {
+        margin: 20px;
+    }
+
+.card-header, .card-footer {
+    padding-top: 20px;
+}
+
+.my-eventlist {
+    padding: 10px;
+    width: 1000px;
+}
+
+.confirm-btn {
+    width: 200px;
+    margin: 20px;
+}
+
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background-color: #BAA896;
+    max-width: 1200px;
+}

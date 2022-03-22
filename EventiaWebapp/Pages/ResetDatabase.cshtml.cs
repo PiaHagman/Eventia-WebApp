@@ -25,6 +25,7 @@ namespace EventiaWebapp.Pages
         {
             
             await _databaseHandler.RecreateAndSeed();
+            
             return Page();
         }
     }
