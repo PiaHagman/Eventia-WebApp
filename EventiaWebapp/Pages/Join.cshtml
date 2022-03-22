@@ -11,15 +11,18 @@
     <div class="my-container">
         <div class="card text-center my-card">
             <div class="card-header">
-                Join this event?
+                <p>Join this event?</p>
             </div>
             <div class="card-body">
-                <h3 class="card-title">@Model.evnt.Title</h3>
+                <h1 class="card-title">@Model.evnt.Title</h1>
                 <p class="card-text">@Model.evnt.Description</p>
+                <p><i>Tickets available: @Model.evnt.SeatsAvailable</i></p>
                 <form method="post" asp-route-evtId=@Model.evnt.Id><button class="btn btn-info my-btn confirm-btn">Confirm Booking</button></form>
-            </div>
+               
+                </div>
             <div class="card-footer text-muted">
-                2 days ago
+                <p>@Model.evnt.Date.ToShortDateString() - @Model.evnt.Date.ToShortTimeString()  &emsp; <b>|</b> &emsp; @Model.evnt.Place   &emsp;<b>|</b>&emsp;   @Model.evnt.Organizer.Name </p>
+
             </div>
         </div>
     </div>

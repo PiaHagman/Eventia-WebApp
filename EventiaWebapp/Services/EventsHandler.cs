@@ -22,7 +22,8 @@ namespace EventiaWebapp.Services
         public List<Event> GetEvents()
         {
             using var ctx = this.ctx;
-            EventList = ctx.Events.ToList();
+            EventList = ctx.Events
+                .Include(e => e.Organizer).ToList();
 
             return EventList;
         }

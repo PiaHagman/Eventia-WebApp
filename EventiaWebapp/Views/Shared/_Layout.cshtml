@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand " >
             <div class="container-md">
                 <div class="navbar-header">
-                    <a class="navbar-brand logo" href="#">Eventia</a>
+                    <a class="navbar-brand logo" asp-controller="Home" asp-action="Index"</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
@@ -31,7 +31,7 @@
                     <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events</a></li>
                     @if (_environment.IsDevelopment())
                     {
-                        <li><a class="nav-link" asp-page="ResetDatabase">ResetPage</a></li>
+                        <li><a class="nav-link" asp-page="/ResetDatabase">ResetPage</a></li>
                     }
                 </ul>
                 <a class="btn btn-info my-btn" asp-controller="Login" asp-action="Index">Log in</a>
@@ -62,7 +62,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background-color: #ffccb0;
+        background-color: #E6CCB5;
         max-width: 1200px;
         margin: auto;
         color:#5b0e2d;
@@ -71,7 +71,7 @@
     }
     header {
         display: block;
-        background-color: #f0bca6;
+        background-color: #BAA896;
         padding: 10px 20px;
         width: 100%;
         
@@ -97,14 +97,22 @@
     }
 
     .my-btn {
-        background-color: #5b0e2d;
+        background-color: #E38B75;
         color: #FCF6F5FF;
         border: none;
         width: 100px;
     }
     .my-btn:hover {
-        background-color: #A71A53;
+        background-color: #5b0e2d;
         color: #FCF6F5FF;
+    }
+
+    .my-btn:after {
+        color: #FCF6F5FF;
+    }
+
+    .my-btn:focus {
+        box-shadow: none;
     }
     .my-container {
         display: flex;
@@ -130,20 +138,45 @@
         width: 80%;
         background-color: #ffccb0;
     }
+    .accordion-button:not(.collapsed) {
+        background-color: #BAA896;
+    }
+    
+    .accordion-button:focus {
+        border: none;
+        color: #5b0e2d;
+        box-shadow: none;
+    }
+
     .accordion-eventDetails {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        padding-right: 50px;
     }
 
     .my-card{
         margin-bottom: 25px;
-        width: 500px;
+        width: 800px;
         text-align: center;
-        }
+    }
+
+    .my-card h3, p {
+        padding: 0px 70px;
+        color:#5b0e2d;
+    }
+
+    .my-card h1 {
+        margin: 20px;     
+    }
+
+    .card-header, .card-footer {
+        padding-top: 20px;
+    }
 
     .confirm-btn {
-        max-width: 300px !important;
+        width: 200px;
+        margin: 20px;
     }
    
 
@@ -155,7 +188,7 @@
         justify-content: center;
         align-items: center;
         height: 100px;
-        background-color: #f0bca6;
+        background-color: #BAA896;
         max-width: 1200px;
         }
 </style>

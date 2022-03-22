@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
+
+
 //Adds a scoped service of the type specified in EventsHandler to the specified IServiceCollection
 builder.Services.AddScoped<EventsHandler>();
 
@@ -23,8 +25,6 @@ builder.Services.AddScoped<DatabaseHandler>();
 
 var app = builder.Build();
 
-
-
 app.UseRouting();
 app.MapControllerRoute(
     "myEvents",
@@ -38,7 +38,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-
+app.UseStaticFiles();
 
 using (var scope = app.Services.CreateScope())
 {

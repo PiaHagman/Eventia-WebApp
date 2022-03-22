@@ -32,7 +32,7 @@ namespace EventiaWebapp.Pages
             }
             else
             {
-                return NotFound("404");
+                return NotFound(404);
             }
 
         }
