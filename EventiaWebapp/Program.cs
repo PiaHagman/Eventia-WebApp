@@ -1,7 +1,11 @@
+using System.Configuration;
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
 using EventiaWebapp.Services.Data;
 using Microsoft.EntityFrameworkCore;
+
+
+#region Konfigurering
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,32 +15,32 @@ builder.Services.AddControllersWithViews();
 //Adds a scoped service of the type specified in EventsHandler to the specified IServiceCollection
 builder.Services.AddScoped<EventsHandler>();
 
-//Registers the given context as a service in the IServiceCollection
+//Hämtar default connection string i appsettings.json   
 builder.Services.AddDbContext<EventiaDbContext>(options =>
-    options.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=EventiaDb"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+//AddScoped - en databasconction per användare, en per http request
+builder.Services.AddScoped<DatabaseHandler>();
+
+
+if (builder.Environment.IsDevelopment())
 {
-    var services = scope.ServiceProvider;
-    SeedTestData.Initialize(services); //Services är en IServiceProvider 
+    builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 }
 
+
+#endregion
+
+#region Middleware Pipelining
+
+//hur inkommande http-anrop ska hanteras i appen
+var app = builder.Build();
+app.UseRouting();
 app.MapControllerRoute(
     "myEvents",
-    "events/myevents/{attId?}",
+    "myevents/{id}",
     new { controller = "Events", action = "MyEvents" });
-
-app.MapControllerRoute(
-    "joinEvent",
-    "events/join/{eventId}",
-    new { controller = "Events", action = "JoinEvent" });
-
-app.MapControllerRoute(
-    "confirmEvent",
-    "events/confirm",
-    new { controller = "Events", action = "ConfirmEvent" });
 
 
 app.MapControllerRoute(
@@ -45,4 +49,33 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
+app.UseStaticFiles();
+
+using (var scope = app.Services.CreateScope())
+{
+    var database = scope.ServiceProvider
+        .GetRequiredService<DatabaseHandler>();
+
+    if (app.Environment.IsProduction())
+    {
+        await database.CreateIfNotExists();
+        app.UseExceptionHandler("/Error");
+    }
+
+    if (app.Environment.IsDevelopment())
+    {
+        await database.CreateAndSeedIfNotExist();
+        app.UseDeveloperExceptionPage();
+    }
+
+    
+
+}
+
+#endregion
+
+#region Server start
+
 app.Run();
+
+#endregion

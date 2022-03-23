@@ -1,0 +1,16 @@
+﻿@page
+@model EventiaWebapp.Pages.ResetDatabaseModel
+@{
+    ViewData["Title"] = "Reset";
+}
+<div class="my-container">
+    <div class="card my-card">
+        <form method="post">
+            <h1>DANGER!!!</h1>
+            <p id="reset-text">Do you really want to Reset the entire database?</p>
+            <button class="btn btn-info my-btn confirm-btn" id="reset-btn" type="submit">
+                Reset Database
+            </button>
+        </form>
+    </div>
+</div>

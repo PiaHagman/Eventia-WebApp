@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject IWebHostEnvironment _environment
+
+<!DOCTYPE html>
 <html lang="en">
 <html>
 <head>
@@ -9,10 +11,11 @@
         rel="stylesheet" 
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" 
         crossorigin="anonymous">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
-    @* @await RenderSectionAsync("bottom_of_head", false);*@
+
 
 </head>
 <body>
@@ -22,7 +25,7 @@
         <nav class="navbar navbar-expand " >
             <div class="container-md">
                 <div class="navbar-header">
-                    <a class="navbar-brand logo" href="#">Eventia</a>
+                    <a class="navbar-brand logo" asp-controller="Home" asp-action="Index">Eventia</a>
                 </div>
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
@@ -43,115 +46,15 @@
 
 <footer>
     <p>&copy; Eventia 2022</p>
+    @if (_environment.IsDevelopment())
+    {   
+        <div><a asp-page="/ResetDatabase">Reset Database - only för development purpose</a></div>    
+    }
 </footer>
 
 @await RenderSectionAsync("bottom_of_body", false)
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
 </body>
-
-<style>
-    html {
-        background-color: #FCF6F5FF;
-    }
-    body {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: #ffccb0;
-        max-width: 1200px;
-        margin: auto;
-        color:#5b0e2d;
-        position: relative;
-        min-height: 100vh;
-    }
-    header {
-        display: block;
-        background-color: #f0bca6;
-        padding: 10px 20px;
-        width: 100%;
-        
-        z-index: 2;
-        
-    }
-    .my-header {
-        position: fixed;
-        top: 0;
-        max-width: 1200px;
-        
-    }
-    .logo, h1 {
-        font-family: 'Sigmar One', cursive;
-        color: #5b0e2d !important;
-    }
-    .nav > li a {
-        color:#5b0e2d;  
-    }
-    .nav > li a:hover {
-        font-weight: bold;
-        color: #5b0e2d;
-    }
-
-    .my-btn {
-        background-color: #5b0e2d;
-        color: #FCF6F5FF;
-        border: none;
-        width: 100px;
-    }
-    .my-btn:hover {
-        background-color: #A71A53;
-        color: #FCF6F5FF;
-    }
-    .my-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 100px;
-    }
-    .main-content {
-        margin: 50px 0;
-        width: 800px;
-        text-align: center;
-    }
-        
-    .main-content h1,.main-content p {
-        padding: 20px;
-    }
-
-    .main-content a {
-        margin: 10px;
-    }
-
-    .my-accordion {
-        width: 80%;
-        background-color: #ffccb0;
-    }
-    .accordion-eventDetails {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .my-card{
-        margin-bottom: 25px;
-        width: 500px
-        }
-
-    .my-card:hover {
-         
-     
-    }
-   
-
-    footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100px;
-        background-color: #f0bca6;
-        max-width: 1200px;
-        }
-</style>
 </html>

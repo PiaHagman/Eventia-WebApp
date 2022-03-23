@@ -15,13 +15,6 @@ namespace EventiaWebapp.Controllers
         {
             return View("MyEvents", id);
         }
-        public IActionResult JoinEvent(Event evnt, Attendee attendee )
-        {
-            return View("JoinEvent");
-        }
-        public IActionResult ConfirmEvent(int id)
-        {
-            return View("ConfirmEvent", id);
-        }
+        
     }
 }

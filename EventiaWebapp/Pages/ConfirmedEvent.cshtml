@@ -1,5 +1,22 @@
-﻿@page "{id}"
+﻿@page "{eventId}"
 @model EventiaWebapp.Pages.ConfirmedEventModel
 @{
+    ViewData["Title"] = "Confirmation";
 }
-<p>Hej!</p>
+
+
+<div>
+    <div class="my-container">
+        <div class="card my-card">
+            <div class="card-body">
+                <h3 class="card-title">* CONFIRMATION *</h3>
+                <h1>@Model.evnt.Title</h1>
+                <p class="card-text">Congrats! You are attending @Model.evnt.Title!</p>
+                <p>See you @Model.evnt.Date.ToShortDateString(), @Model.evnt.Date.ToShortTimeString() at
+                    @Model.evnt.Place .</p>
+                <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" asp-action="MyEvents">My Events</a>
+                
+            </div>
+            </div>
+    </div>
+</div>
