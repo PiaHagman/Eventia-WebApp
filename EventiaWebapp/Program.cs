@@ -3,12 +3,13 @@ using EventiaWebapp.Services;
 using EventiaWebapp.Services.Data;
 using Microsoft.EntityFrameworkCore;
 
+
+#region Konfigurering
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
-
-
 
 //Adds a scoped service of the type specified in EventsHandler to the specified IServiceCollection
 builder.Services.AddScoped<EventsHandler>();
@@ -20,15 +21,23 @@ builder.Services.AddDbContext<EventiaDbContext>(options =>
 //AddScoped - en databasconction per användare, en per http request
 builder.Services.AddScoped<DatabaseHandler>();
 
-//Funkar inte
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+}
+
+
+#endregion
+
+#region Middleware Pipelining
+
+//hur inkommande http-anrop ska hanteras i appen
 var app = builder.Build();
-
 app.UseRouting();
 app.MapControllerRoute(
     "myEvents",
-    "events/myevents/{attId?}",
+    "myevents/{id}",
     new { controller = "Events", action = "MyEvents" });
 
 
@@ -48,14 +57,23 @@ using (var scope = app.Services.CreateScope())
     if (app.Environment.IsProduction())
     {
         await database.CreateIfNotExists();
+        app.UseExceptionHandler("/Error");
     }
 
     if (app.Environment.IsDevelopment())
     {
         await database.CreateAndSeedIfNotExist();
+        app.UseDeveloperExceptionPage();
     }
 
     
+
 }
 
+#endregion
+
+#region Server start
+
 app.Run();
+
+#endregion

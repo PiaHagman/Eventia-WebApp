@@ -14,6 +14,10 @@ body {
     min-height: 100vh;
 }
 
+a:hover {
+    cursor: pointer;
+}
+
 header {
     display: block;
     background-color: #BAA896;
@@ -93,19 +97,26 @@ header {
 
 .accordion-button:not(.collapsed) {
     background-color: #BAA896;
+    color: #5b0e2d;
+    font-weight: normal;
 }
 
 .accordion-button:focus {
     border: none;
     color: #5b0e2d;
     box-shadow: none;
+    font-weight: bold;
 }
 
-.accordion-eventDetails {
+.accordion-button::after {
+    font-weight: normal;
+}
+    .accordion-eventDetails {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding-right: 50px;
+
 }
 
 .my-card {
@@ -145,7 +156,14 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100px;
     background-color: #BAA896;
     max-width: 1200px;
 }
+
+    footer a {
+        color: #5b0e2d;
+        text-decoration: none;
+        font-size: smaller;
+    }

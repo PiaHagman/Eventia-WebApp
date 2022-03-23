@@ -1,0 +1,1 @@
+﻿En MPA(multi-page application) som använder MVC/Razor Pages

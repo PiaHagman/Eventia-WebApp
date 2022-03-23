@@ -30,11 +30,7 @@
                 <ul class="nav navbar-nav">
                     <li><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a class="nav-link" asp-controller="Events" asp-action="Index">Events</a></li>
-                    <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents" asp-route-id="1">My Events</a></li>
-                    @if (_environment.IsDevelopment())
-                    {
-                        <li><a class="nav-link" asp-page="/ResetDatabase">ResetPage</a></li>
-                    }
+                    <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events</a></li>
                 </ul>
                 <a class="btn btn-info my-btn" asp-controller="Login" asp-action="Index">Log in</a>
             </div>
@@ -50,9 +46,15 @@
 
 <footer>
     <p>&copy; Eventia 2022</p>
+    @if (_environment.IsDevelopment())
+    {   
+        <div><a asp-page="/ResetDatabase">Reset Database - only för development purpose</a></div>    
+    }
 </footer>
 
 @await RenderSectionAsync("bottom_of_body", false)
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
 </body>
 </html>
