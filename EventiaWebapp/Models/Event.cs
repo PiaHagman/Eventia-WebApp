@@ -4,7 +4,7 @@ namespace EventiaWebapp.Models
 {
     public class Event
     {
-        public int EventId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         public string? Description { get; set; }
@@ -18,6 +18,6 @@ namespace EventiaWebapp.Models
         [Required]
         public Organizer? Organizer { get; set; }
 
-        public ICollection<AttendeeEvent>? AttendeeEvents { get; set; }
+        public ICollection<Attendee>? Attendees { get; set; }
     }
 }

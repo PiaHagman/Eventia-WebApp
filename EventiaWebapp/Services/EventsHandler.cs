@@ -34,12 +34,8 @@ namespace EventiaWebapp.Services
                 .Include(a => a.Events)
                 .ThenInclude(e => e.Organizer);
 
-            Attendee attendee = query.FirstOrDefault();
+            Attendee attendee = query.FirstOrDefault() ?? throw new InvalidOperationException();
 
-            if (attendee == null)
-            {
-                return null;
-            }
             return attendee;
         }
 
@@ -74,10 +70,12 @@ namespace EventiaWebapp.Services
         {
             var attendee = GetAttendee(id);
 
+            var myEvents = attendee.Events.ToList();
 
-            var myEvents = attendee.Events;
-            
-            return myEvents.ToList();
+            myEvents.Sort((date1, date2) =>
+                DateTime.Compare(date1.Date, date2.Date));
+
+            return myEvents;
 
         }
     }

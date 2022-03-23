@@ -6,7 +6,6 @@ namespace EventiaWebapp.Controllers
     {
         public IActionResult Index()
         {
-            //Kan jag lägga till en pathväg
             return Redirect("/");
         }
     }

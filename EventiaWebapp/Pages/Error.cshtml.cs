@@ -5,8 +5,16 @@ namespace EventiaWebapp.Pages
 {
     public class ErrorModel : PageModel
     {
-        public void OnGet()
+        private readonly ILogger<ErrorModel> _logger;
+        public string ErrorMessage;
+
+        public ErrorModel(ILogger<ErrorModel> logger)
         {
+            _logger = logger;
+        }
+        public void OnGet(string errorMessage)
+        {
+            this.ErrorMessage = errorMessage;
         }
     }
 }

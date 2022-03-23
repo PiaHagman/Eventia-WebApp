@@ -1,4 +1,5 @@
 using EventiaWebapp.Models;
+using EventiaWebapp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -7,17 +8,20 @@ namespace EventiaWebapp.Pages
     public class JoinModel : PageModel
     {
 
-        private readonly Services.EventsHandler _eventsHandler;
+        private readonly EventsHandler _eventsHandler;
         public Event evnt { get; set; }
+        private readonly ILogger<JoinModel> _logger;
 
-        public JoinModel(Services.EventsHandler eventsHandler)
+        public JoinModel(ILogger<JoinModel> logger, EventsHandler eventsHandler)
         {
             _eventsHandler = eventsHandler;
+            _logger = logger;
         }
 
         public void OnGet(int eventId)
         {
-            evnt = _eventsHandler.GetEvents().Find(e => e.Id == eventId);
+            evnt = _eventsHandler.GetEvents()
+                .Find(e => e.Id == eventId);
 
         }
 
@@ -33,7 +37,9 @@ namespace EventiaWebapp.Pages
             }
             else
             {
-                return NotFound(404);
+                _logger.LogError("Event is missing");
+                return RedirectToPage("/Error", new {errorMessage = 
+                    "This event can't be found, please try again."});
             }
 
         }
