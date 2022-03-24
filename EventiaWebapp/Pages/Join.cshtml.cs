@@ -29,6 +29,10 @@ namespace EventiaWebapp.Pages
             //TODO kolla om användaren redan är registrerad på event och i så fall ge ett felmeddelande. En alert kanske? 
             
             var attendeeId = 1;
+
+            
+            
+
             var eventExists = _eventsHandler.AttendEvent(evtId, attendeeId);
 
             if (eventExists)

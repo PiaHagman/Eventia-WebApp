@@ -18,7 +18,7 @@ namespace EventiaWebapp.Services
         //Metod som returnerar alla events
         public List<Event> GetEvents()
         {
-            using var ctx = this.ctx;
+            
             var eventList = ctx.Events
                 .Include(e => e.Organizer)
                 .ToList();
@@ -29,7 +29,7 @@ namespace EventiaWebapp.Services
         //Metod som returnerar ett default deltagarobjekt (alltid samma i denna uppgift)
         public Attendee GetAttendee(int id)
         {
-            using var ctx = this.ctx;
+            
             var query = ctx.Attendees
                 .Include(a => a.Events)
                 .ThenInclude(e => e.Organizer);
@@ -42,7 +42,6 @@ namespace EventiaWebapp.Services
         //Metod som registrerar ett givet deltagarobjekt med ett givet eventobjekt
         public bool AttendEvent(int eventId, int id)
         {
-            using var ctx = this.ctx;
 
             var query = ctx.Events.Include(e => e.Attendees);
 
@@ -50,6 +49,7 @@ namespace EventiaWebapp.Services
           
 
             bool evntExist = evnt != null;
+            
 
             if (evntExist)
             {

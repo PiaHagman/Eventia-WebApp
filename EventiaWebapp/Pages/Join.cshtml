@@ -4,6 +4,14 @@
 @model EventiaWebapp.Pages.JoinModel
 @{
     ViewData["Title"] = "Events";
+
+    var evntExists = false;
+
+    var myEvents = _eventsHandler.GetMyEvents(1).Select(e => e.Id).ToList();
+    @if (myEvents.Contains(@Model.evnt.Id))
+    {
+        evntExists = true;
+    }
 }
 
 
@@ -17,9 +25,19 @@
                 <h1 class="card-title">@Model.evnt.Title</h1>
                 <p class="card-text">@Model.evnt.Description</p>
                 <p><i>Tickets available: @Model.evnt.SeatsAvailable</i></p>
-                <form method="post" asp-route-evtId="@Model.evnt.Id">
-                    <button class="btn btn-info my-btn confirm-btn">Confirm Booking</button>
-                </form>
+                
+                @if (evntExists)
+                {
+                    <p><b>You are already booked to this event!</b></p>
+                    <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" asp-action="MyEvents">My Events</a>
+                }
+                else
+                {
+                    <form method="post" asp-route-evtId="@Model.evnt.Id">
+                        <button class="btn btn-info my-btn confirm-btn">Confirm Booking</button>
+                    </form>
+                }
+                
                
                 </div>
             <div class="card-footer text-muted">
