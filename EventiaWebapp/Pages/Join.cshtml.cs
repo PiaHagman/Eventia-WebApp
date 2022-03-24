@@ -20,13 +20,14 @@ namespace EventiaWebapp.Pages
 
         public void OnGet(int eventId)
         {
-            evnt = _eventsHandler.GetEvents()
-                .Find(e => e.Id == eventId);
+            evnt = _eventsHandler.GetEvents().Find(e => e.Id == eventId);
 
         }
 
         public IActionResult OnPost(int evtId)
         {
+            //TODO kolla om användaren redan är registrerad på event och i så fall ge ett felmeddelande. En alert kanske? 
+            
             var attendeeId = 1;
             var eventExists = _eventsHandler.AttendEvent(evtId, attendeeId);
 

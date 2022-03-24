@@ -34,8 +34,11 @@ if (builder.Environment.IsDevelopment())
 
 #region Middleware Pipelining
 
+
+
 //hur inkommande http-anrop ska hanteras i appen
 var app = builder.Build();
+app.UseStaticFiles(); //Ska helst ligga tidigt så slipper vi går vidare om sidan som efterfrågas är statisk.
 app.UseRouting();
 app.MapControllerRoute(
     "myEvents",
@@ -49,7 +52,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-app.UseStaticFiles();
+
 
 using (var scope = app.Services.CreateScope())
 {
