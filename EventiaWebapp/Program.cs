@@ -1,5 +1,3 @@
-using System.Configuration;
-using EventiaWebapp.Models;
 using EventiaWebapp.Services;
 using EventiaWebapp.Services.Data;
 using Microsoft.EntityFrameworkCore;
@@ -34,8 +32,6 @@ if (builder.Environment.IsDevelopment())
 
 #region Middleware Pipelining
 
-
-
 //hur inkommande http-anrop ska hanteras i appen
 var app = builder.Build();
 app.UseStaticFiles(); //Ska helst ligga tidigt så slipper vi går vidare om sidan som efterfrågas är statisk.
@@ -45,14 +41,11 @@ app.MapControllerRoute(
     "myevents/{id}",
     new { controller = "Events", action = "MyEvents" });
 
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller}/{action=Index}/{id?}");
 
 app.MapRazorPages();
-
-
 
 using (var scope = app.Services.CreateScope())
 {

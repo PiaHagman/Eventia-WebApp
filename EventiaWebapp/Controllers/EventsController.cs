@@ -1,6 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using EventiaWebapp.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace EventiaWebapp.Controllers
 {

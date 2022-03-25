@@ -4,7 +4,6 @@
     ViewData["Title"] = "Confirmation";
 }
 
-
 <div>
     <div class="my-container">
         <div class="card my-card">
@@ -14,8 +13,8 @@
                 <p class="card-text">Congrats! You are attending @Model.evnt.Title!</p>
                 <p>See you @Model.evnt.Date.ToShortDateString(), @Model.evnt.Date.ToShortTimeString() at
                     @Model.evnt.Place .</p>
-                <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" asp-action="MyEvents">My Events</a>
-                
+                <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" 
+                   asp-action="MyEvents">My Events</a>
             </div>
             </div>
     </div>

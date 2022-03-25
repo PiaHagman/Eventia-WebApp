@@ -5,8 +5,6 @@
     ViewData["Title"] = "My Events";
     var attendeeId = Model;
     List<Event> myEventList = _eventsHandler.GetMyEvents(attendeeId);
-    
-
 }
 
 @{
@@ -32,7 +30,6 @@
                         <td>@item.Date.ToShortTimeString()</td>
                         <td>@item.Place</td>
                         <td>@item.Organizer.Name</td>
-
                     </tr>
                 }
                 </tbody>

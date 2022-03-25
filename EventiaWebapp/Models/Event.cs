@@ -7,7 +7,7 @@ namespace EventiaWebapp.Models
         public int Id { get; set; }
         [Required]
         public string Title { get; set; }
-        public string? Description { get; set; }
+        public string Description { get; set; }
         [Required]
         public string Place { get; set; }
         public string? Address { get; set; }

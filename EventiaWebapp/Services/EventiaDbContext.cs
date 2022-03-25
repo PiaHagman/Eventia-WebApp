@@ -9,7 +9,7 @@ namespace EventiaWebapp.Services.Data
         public DbSet<Event> Events { get; set; }
         public DbSet<Organizer> Organizers { get; set; }
 
-        //Tar in inställningar i options som sedan skickas vidare till base
+        
         public EventiaDbContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -23,7 +23,6 @@ namespace EventiaWebapp.Services.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"server=(localdb)\MSSQLLocalDB;database=EventiaDb");
         }
 
         

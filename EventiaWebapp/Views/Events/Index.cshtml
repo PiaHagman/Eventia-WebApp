@@ -21,7 +21,7 @@
                         <div class="accordion-body">
                             <p>@item.Description</p>
                             <div class="accordion-eventDetails">
-                                <p><b>@item.Place</b>&emsp;<b>|</b>&emsp;@item.Date.ToShortTimeString() - @item.Date.ToShortDateString()</p>
+                                <p><b>@item.Place</b>&emsp;<b>|</b>&emsp;@item.Date.ToShortTimeString()&emsp;<b>|</b>&emsp;@item.Date.ToShortDateString()</p>
                                 <a class="btn btn-info my-btn" asp-page="/Join" asp-route-eventId="@item.Id">Join</a> 
                             </div>
                         </div>
