@@ -1,23 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EventiaWebapp.Models
 {
     public class Event
     {
         public int Id { get; set; }
-        [Required]
-        public string Title { get; set; }
-        public string Description { get; set; }
-        [Required]
-        public string Place { get; set; }
+        [Required] public string Title { get; set; }
+        [Required] public string Description { get; set; }
+        [Required] public string Place { get; set; }
         public string? Address { get; set; }
-        [Required]
-        public DateTime Date { get; set; }
-        public int SeatsAvailable { get; set; }
+        [Required] public DateTime Date { get; set; }
+        [Required] public int SeatsAvailable { get; set; }
 
-        [Required]
-        public Organizer? Organizer { get; set; }
+        /*[ForeignKey("Organizer")]
+        public string OrganizerId { get; set; }*/
+        [InverseProperty("HostedEvents")]
+        [DisplayName("Organizer")]
+        public EventiaUser Organizer { get; set; }
 
-        public ICollection<Attendee>? Attendees { get; set; }
+        /*[ForeignKey("Attendees")]
+        
+        public string AttendeesId { get; set; }*/
+        [InverseProperty("JoinedEvents")]
+        
+        public ICollection<EventiaUser> Attendees { get; set; }
     }
 }

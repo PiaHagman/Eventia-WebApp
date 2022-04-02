@@ -7,11 +7,11 @@
 
     var evntExists = false;
 
-    var myEvents = _eventsHandler.GetMyEvents(1).Select(e => e.Id).ToList();
+    @*var myEvents = _eventsHandler.GetMyEvents(1).Select(e => e.Id).ToList();
     @if (myEvents.Contains(@Model.evnt.Id))
     {
         evntExists = true;
-    }
+    }*@
 }
 
 <div>
@@ -38,7 +38,7 @@
                 }
             </div>
                 <div class="card-footer text-muted">
-                    <p>@Model.evnt.Date.ToShortDateString() - @Model.evnt.Date.ToShortTimeString()  &emsp; <b>|</b> &emsp; @Model.evnt.Place   &emsp;<b>|</b>&emsp;   @Model.evnt.Organizer.Name </p>
+                    <p>@Model.evnt.Date.ToShortDateString() - @Model.evnt.Date.ToShortTimeString()  &emsp; <b>|</b> &emsp; @Model.evnt.Place   &emsp;<b>|</b>&emsp;   @*@Model.evnt.Organizer.Name*@ </p>
                 </div>
         </div>
     </div>

@@ -1,11 +1,12 @@
 ﻿@model int 
 @inject EventsHandler _eventsHandler
 
+@*
 @{
     ViewData["Title"] = "My Events";
     var attendeeId = Model;
     List<Event> myEventList = _eventsHandler.GetMyEvents(attendeeId);
-}
+}*@
 
 @{
     <div class="my-container">
@@ -22,16 +23,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach (var item in myEventList)
+ @*               @foreach (var item in myEventList)
                 {
                     <tr>
                         <th scope="row">@item.Title</th>
                         <td>@item.Date.ToShortDateString()</td>
                         <td>@item.Date.ToShortTimeString()</td>
                         <td>@item.Place</td>
-                        <td>@item.Organizer.Name</td>
+                        @*<td>@item.Organizer.Name</td>
                     </tr>
-                }
+}
+*@
                 </tbody>
             </table>
         </div>

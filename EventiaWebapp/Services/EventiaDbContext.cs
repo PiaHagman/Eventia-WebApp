@@ -1,30 +1,16 @@
 ﻿using EventiaWebapp.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services.Data
 {
-    public class EventiaDbContext : DbContext
+    public class EventiaDbContext : IdentityDbContext<EventiaUser>
     {
-        public DbSet<Attendee> Attendees { get; set; }
         public DbSet<Event> Events { get; set; }
-        public DbSet<Organizer> Organizers { get; set; }
 
-        
-        public EventiaDbContext(DbContextOptions options) : base(options) { }
+        public EventiaDbContext(DbContextOptions <EventiaDbContext> options) : base(options) { }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Attendee>()
-                .HasIndex(e => e.Email).IsUnique();
-
-            modelBuilder.Entity<Organizer>()
-                .HasIndex(e => e.Name).IsUnique();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-        }
-
-        
+       
     }
 }

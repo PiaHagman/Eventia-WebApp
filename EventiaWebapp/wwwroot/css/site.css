@@ -1,5 +1,5 @@
 html {
-    background-color: #FCF6F5FF;
+    background-color: rgba(246, 245, 255, 0.99);
 }
 
 body {
@@ -48,7 +48,7 @@ header {
 
 .my-btn {
     background-color: #E38B75;
-    color: #FCF6F5FF;
+    color: rgba(246, 245, 255, 0.99);
     border: none;
     width: 100px;
     transition: none;
@@ -56,11 +56,11 @@ header {
 
     .my-btn:hover {
         background-color: #5b0e2d;
-        color: #FCF6F5FF;
+        color: rgba(246, 245, 255, 0.99);
     }
 
     .my-btn:after {
-        color: #FCF6F5FF;
+        color: rgba(246, 245, 255, 0.99);
         background-color: green;
         box-shadow: none;
     }

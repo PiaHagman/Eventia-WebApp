@@ -24,23 +24,25 @@ namespace EventiaWebapp.Services
         }
 
         //Metod som returnerar ett default deltagarobjekt (alltid samma i denna uppgift)
-        public Attendee GetAttendee(int id)
+     /*   public Attendee GetAttendee(int id)
         {
-            
-            var query = ctx.Attendees
-                .Include(a => a.Events)
-                .ThenInclude(e => e.Organizer);
+
+            var query = ctx.Users;
+            //.Include(a => a.Events);
+            //.ThenInclude(e => e.Organizer);
 
             Attendee attendee = query.FirstOrDefault() ?? throw new InvalidOperationException();
             return attendee;
-        }
+
+            return null;
+        }*/
 
         //Metod som registrerar ett givet deltagarobjekt med ett givet eventobjekt
         public bool AttendEvent(int eventId, int id)
         {
 
-            var query = ctx.Events
-                .Include(e => e.Attendees);
+     /*       var query = ctx.Events
+                .Include(e => e.Users);
             var evnt = query.FirstOrDefault(e => e.Id == eventId);
 
             bool evntExist = evnt != null;
@@ -51,11 +53,11 @@ namespace EventiaWebapp.Services
                 attendee.Events.Add(evnt);
                 ctx.SaveChanges();
                 return true;
-            }
+            }*/
             return false;
         }
         //Metod som returnerar en lista på alla events som ett givet deltagarobjekt deltar i
-        public List<Event> GetMyEvents(int id)
+     /*   public List<Event> GetMyEvents(int id)
         {
             var attendee = GetAttendee(id);
             var myEvents = attendee.Events.ToList();
@@ -64,6 +66,6 @@ namespace EventiaWebapp.Services
                 DateTime.Compare(date1.Date, date2.Date));
 
             return myEvents;
-        }
+        }*/
     }
 }
