@@ -14,15 +14,11 @@ namespace EventiaWebapp.Models
         [Required] public DateTime Date { get; set; }
         [Required] public int SeatsAvailable { get; set; }
 
-        /*[ForeignKey("Organizer")]
-        public string OrganizerId { get; set; }*/
+        
         [InverseProperty("HostedEvents")]
         [DisplayName("Organizer")]
         public EventiaUser Organizer { get; set; }
 
-        /*[ForeignKey("Attendees")]
-        
-        public string AttendeesId { get; set; }*/
         [InverseProperty("JoinedEvents")]
         
         public ICollection<EventiaUser> Attendees { get; set; }

@@ -52,6 +52,7 @@ header {
     border: none;
     width: 100px;
     transition: none;
+    margin: 10px;
 }
 
     .my-btn:hover {
@@ -71,7 +72,7 @@ header {
 
 .confirm-btn {
     width: 200px;
-    margin: 20px;
+   
 }
 
 .my-container {
