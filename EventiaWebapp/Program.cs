@@ -14,18 +14,21 @@ builder.Services.AddControllersWithViews();
 
 //Adds a scoped service of the type specified in EventsHandler to the specified IServiceCollection
 builder.Services.AddScoped<EventsHandler>();
-//AddScoped - en databasconction per användare, en per http request
+//AddScoped - en databasconction per anvï¿½ndare, en per http request
 builder.Services.AddScoped<DatabaseHandler>();
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 }
 
-//Hämtar default connection string i appsettings.json   
+//Hï¿½mtar default connection string i appsettings.json   
 builder.Services.AddDbContext<EventiaDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//Det är här som Identitypaketet läggs till
+/*builder.Services.AddDbContext<EventiaDbContext>(options =>
+    options.UseSqlServer(connectionString));*/
+
+//Det ï¿½r hï¿½r som Identitypaketet lï¿½ggs till
 builder.Services.AddDefaultIdentity<EventiaUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<EventiaDbContext>();
 // .AddEntityFrameworkStores<EventiaDbContext>();
@@ -37,12 +40,12 @@ builder.Services.AddDefaultIdentity<EventiaUser>(options => options.SignIn.Requi
 
 //hur inkommande http-anrop ska hanteras i appen
 var app = builder.Build();
-app.UseStaticFiles(); //Ska helst ligga tidigt så slipper vi går vidare om sidan som efterfrågas är statisk.
+app.UseStaticFiles(); //Ska helst ligga tidigt sï¿½ slipper vi gï¿½r vidare om sidan som efterfrï¿½gas ï¿½r statisk.
 app.UseRouting();
 
-//Två nya middleware-steg som tillhör Identity-paketet. Måste ligga efter UseRouting och i den ordningen som de står nu.
-app.UseAuthentication(); //Vem är det som skickade en http-request till oss?
-app.UseAuthorization(); //Vad får personen göra?
+//Tvï¿½ nya middleware-steg som tillhï¿½r Identity-paketet. Mï¿½ste ligga efter UseRouting och i den ordningen som de stï¿½r nu.
+app.UseAuthentication(); //Vem ï¿½r det som skickade en http-request till oss?
+app.UseAuthorization(); //Vad fï¿½r personen gï¿½ra?
 
 app.MapControllerRoute(
     "myEvents",
