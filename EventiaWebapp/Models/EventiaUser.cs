@@ -11,7 +11,6 @@ namespace EventiaWebapp.Models
 
         
         public virtual ICollection <Event> HostedEvents { get; set; }
-
         public virtual ICollection<Event> JoinedEvents { get; set; }
 
         

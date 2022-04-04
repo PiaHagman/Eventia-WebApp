@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services.Data
 {
-    public class EventiaDbContext : IdentityDbContext<EventiaUser>
+    public class EventiaDbContext : IdentityDbContext<EventiaUser, IdentityRole, string>
     {
         public DbSet<Event> Events { get; set; }
 

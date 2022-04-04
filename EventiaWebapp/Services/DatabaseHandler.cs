@@ -8,11 +8,13 @@ namespace EventiaWebapp.Services
     {
         private readonly EventiaDbContext _ctx;
         private readonly UserManager<EventiaUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public DatabaseHandler(EventiaDbContext ctx, UserManager<EventiaUser> userManager)
+        public DatabaseHandler(EventiaDbContext ctx, UserManager<EventiaUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _ctx = ctx;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
         public async Task RecreateAndSeed()
         {
@@ -118,15 +120,33 @@ namespace EventiaWebapp.Services
 
             List<EventiaUser> eventiaUsers = new List<EventiaUser>
             {
-                new() {FirstName = "Pia", LastName = "Hagman", JoinedEvents = piasEvents },
-                new() {FirstName = "Johan", LastName = "Fahlgren", JoinedEvents = johansEvents },
-                new() {FirstName = "Märta", LastName = "Hjalmarson", JoinedEvents = johansEvents }
+                new() {FirstName = "Pia", LastName = "Hagman", Email = "hagman.pia@gmail.com", UserName = "hagman.pia@gmail.com", JoinedEvents = piasEvents},
+                new() {FirstName = "Johan", LastName = "Fahlgren", Email = "johan@gmail.com", UserName = "johan@gmail.com", JoinedEvents = johansEvents },
+                new() {FirstName = "Märta", LastName = "Hjalmarson", Email = "marta@gmail.com", UserName = "marta@gmail.com", JoinedEvents = johansEvents }
             };
+
+            List<IdentityRole> roles = new List<IdentityRole>
+            {
+                new() {Name = "user"},  
+                new() {Name = "organizer"},
+                new() {Name = "administrator"}
+            };
+
+          
 
             await _ctx.AddRangeAsync(events);
             await _userManager.CreateAsync(eventiaUsers[0], "@Ett2345");
             await _userManager.CreateAsync(eventiaUsers[1], "@Ett2345");
             await _userManager.CreateAsync(eventiaUsers[2], "@Ett2345");
+
+            await _roleManager.CreateAsync(roles[0]);
+            await _roleManager.CreateAsync(roles[1]);
+            await _roleManager.CreateAsync(roles[2]);
+
+            await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[0]}");
+            await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[0]}");
+            await _userManager.AddToRoleAsync(eventiaUsers[2], $"{roles[0]}");
+
             await _ctx.SaveChangesAsync();
         }
     }
