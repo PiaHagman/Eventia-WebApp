@@ -1,4 +1,5 @@
 using EventiaWebapp.Models;
+using EventiaWebapp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -7,10 +8,10 @@ namespace EventiaWebapp.Pages
     public class ConfirmedEventModel : PageModel
     {
 
-        private readonly Services.EventsHandler _eventsHandler;
+        private readonly EventsHandler _eventsHandler;
         public Event evnt { get; set; }
 
-        public ConfirmedEventModel(Services.EventsHandler eventsHandler)
+        public ConfirmedEventModel(EventsHandler eventsHandler)
         {
             _eventsHandler = eventsHandler;
         }

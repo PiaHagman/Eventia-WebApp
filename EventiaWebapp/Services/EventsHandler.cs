@@ -26,7 +26,7 @@ namespace EventiaWebapp.Services
             return eventList;
         }
 
-        public async Task <EventiaUser> GetAttendee(string userId)
+        public async Task<EventiaUser> GetAttendee(string userId)
         {
             var query = ctx.Users
             .Include(eu => eu.JoinedEvents)
@@ -52,24 +52,30 @@ namespace EventiaWebapp.Services
                 var attendee = ctx.Users
                     .Include(eu => eu.JoinedEvents)
                     .FirstOrDefault(u => u.Id==id);
-                
-                attendee.JoinedEvents.Add(evnt);
-                
+
+                if (attendee != null) attendee.JoinedEvents.Add(evnt);
+
                 ctx.SaveChanges();
                 return true;
             }
             return false;
         }
-        //Metod som returnerar en lista på alla events som ett givet deltagarobjekt deltar i
-     /*   public List<Event> GetMyEvents(int id)
+
+        public async Task <List<Event>?> GetMyEvents(string id)
         {
-            var attendee = GetAttendee(id);
-            var myEvents = attendee.Events.ToList();
+            var attendee = await GetAttendee(id);
+
+            if (attendee.JoinedEvents is null)
+            {
+                return null;
+            }
+            
+            var myEvents = attendee.JoinedEvents.ToList();
 
             myEvents.Sort((date1, date2) =>
                 DateTime.Compare(date1.Date, date2.Date));
 
             return myEvents;
-        }*/
+        }
     }
 }

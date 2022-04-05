@@ -1,17 +1,21 @@
 ﻿@page "{eventId}"
 @inject EventsHandler _eventsHandler
+@inject UserManager<EventiaUser> _userManager
 
+@using Microsoft.AspNetCore.Identity
 @model EventiaWebapp.Pages.JoinModel
 @{
     ViewData["Title"] = "Events";
 
-    var evntExists = false;
+    var evntAlreadyBooked = false;
 
-    @*var myEvents = _eventsHandler.GetMyEvents(1).Select(e => e.Id).ToList();
-    @if (myEvents.Contains(@Model.evnt.Id))
+    var myEvents = await _eventsHandler.GetMyEvents(_userManager.GetUserId(User));
+    var eventsIdList = myEvents.Select(e => e.Id).ToList();
+
+    @if (eventsIdList.Contains(@Model.evnt.Id))
     {
-        evntExists = true;
-    }*@
+        evntAlreadyBooked = true;
+    }
 }
 
 <div>
@@ -25,7 +29,7 @@
                 <p class="card-text">@Model.evnt.Description</p>
                 <p><i>Tickets available: @Model.evnt.SeatsAvailable</i></p>
                 
-                @if (evntExists)
+                @if (evntAlreadyBooked)
                 {
                     <p><b>You are already booked to this event!</b></p>
                     <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" asp-action="MyEvents">My Events</a>

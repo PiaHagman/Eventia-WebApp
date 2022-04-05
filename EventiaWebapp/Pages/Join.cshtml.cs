@@ -13,8 +13,9 @@ namespace EventiaWebapp.Pages
         private readonly ILogger<JoinModel> _logger;
         private readonly UserManager<EventiaUser> _userManager;
 
+        [BindProperty]
         public Event evnt { get; set; }
-        
+
         public JoinModel(ILogger<JoinModel> logger, EventsHandler eventsHandler, UserManager<EventiaUser> userManager)
         {
             _eventsHandler = eventsHandler;
