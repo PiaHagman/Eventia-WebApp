@@ -16,7 +16,6 @@ namespace EventiaWebapp.Services
             _userManager = userManager;
         }
 
-        //Metod som returnerar alla events
         public List<Event> GetEvents()
         {
             var eventList = ctx.Events
@@ -40,15 +39,12 @@ namespace EventiaWebapp.Services
 
         public bool AttendEvent(int eventId, string id)
         {
-            //Plockar fram eventet givet eventId, inkluderar attendees
-            var query = ctx.Events;
-                //.Include(e => e.Attendees);
-            
-            var evnt = query.FirstOrDefault(e => e.Id == eventId);
+           
+            var evnt = ctx.Events
+                .FirstOrDefault(e => e.Id == eventId);
 
             if (evnt is not null)
             {
-                //Plockar fram attendee
                 var attendee = ctx.Users
                     .Include(eu => eu.JoinedEvents)
                     .FirstOrDefault(u => u.Id==id);

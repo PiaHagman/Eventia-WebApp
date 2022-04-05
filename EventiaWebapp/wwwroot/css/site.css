@@ -20,7 +20,7 @@ a:hover {
 
 header {
     display: block;
-    background-color: #BAA896;
+    background-color: #ccb8a4;
     padding: 10px 20px;
     width: 100%;
     z-index: 2;
@@ -149,30 +149,67 @@ header {
     padding-top: 20px;
 }
 
-
-
 .my-eventlist {
     padding: 10px;
     width: 1000px;
 }
-
-
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    height: 80px;
-    background-color: #BAA896;
-    max-width: 1200px;
+.row {
+    max-width: 400px;
 }
 
-    footer a {
-        color: #5b0e2d;
-        text-decoration: none;
-        font-size: smaller;
+#registerForm, #account {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#registerForm > *, #account > * {
+    margin: 5px 0px;
+}
+
+#registerForm button, #account button {
+    align-self: flex-end;
+    margin-top: 15px;
+    margin-right: 0;
+}
+
+.space-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.login-extra-links {
+    margin-top: 50px !important;
+}   
+.login-extra-links a {
+    color: #5b0e2d;
+    text-decoration: none;
+}
+    .login-extra-links a:hover {
+        font-weight: bold;
     }
+
+.login-extra-links p {
+    text-align: center;
+    font-size: small;
+}
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 80px;
+        background-color: #ccb8a4;
+        max-width: 1200px;
+    }
+
+footer a {
+    color: #5b0e2d;
+    text-decoration: none;
+    font-size: smaller;
+
+}

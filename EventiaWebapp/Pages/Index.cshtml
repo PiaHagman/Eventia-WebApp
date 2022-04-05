@@ -24,12 +24,10 @@
         
         @if (SignInManager.IsSignedIn(User))
         {
-            <li class="nav-item">
                 <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index")">
                     <button  type="submit" class="btn btn-info my-btn">Logout</button>
                 </form>
-            </li>
-        }
+          }
         else
         {
             <a class="btn btn-info my-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
