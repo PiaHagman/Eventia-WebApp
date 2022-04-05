@@ -27,8 +27,6 @@ builder.Services.AddDbContext<EventiaDbContext>(options =>
 builder.Services.AddDefaultIdentity<EventiaUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<EventiaDbContext>();
-   
-
 
 #endregion
 
@@ -60,13 +58,13 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsProduction())
     {
-        await database.CreateIfNotExists();
+        //await database.CreateIfNotExists();
         app.UseExceptionHandler("/Error");
     }
 
     if (app.Environment.IsDevelopment())
     {
-        await database.CreateAndSeedIfNotExist();
+        //await database.CreateAndSeedIfNotExist();
         app.UseDeveloperExceptionPage();
     }
 

@@ -59,7 +59,6 @@ namespace EventiaWebapp.Services
                         Place = "GÖTEBORG - Trädgårdsföreningen",
                         Date = new DateTime(2022, 08, 07, 19, 30, 00),
                         SeatsAvailable = 5000,
-                        //Organizer = organizers[0],
                     },
                     new()
                     {
@@ -69,7 +68,7 @@ namespace EventiaWebapp.Services
                         Place = "GÖTEBORG - Ullevi",
                         Date = new DateTime(2022, 06, 10, 19, 00, 00),
                         SeatsAvailable = 40000,
-                        //Organizer = organizers[0]
+                       
                     },
                     new()
                     {
@@ -79,7 +78,7 @@ namespace EventiaWebapp.Services
                         Place = "STOCKHOLM - Friends Arena",
                         Date = new DateTime(2022, 07, 22, 20, 30, 00),
                         SeatsAvailable = 40000,
-                        //Organizer = organizers[1]
+                       
                     },
                     new()
                     {
@@ -89,7 +88,7 @@ namespace EventiaWebapp.Services
                         Place = "STOCKHOLM - Cirkus",
                         Date = new DateTime(2022, 06, 01, 17, 00, 00),
                         SeatsAvailable = 2000,
-                        //Organizer = organizers[1]
+                        
                     },
                     new()
                     {
@@ -99,7 +98,7 @@ namespace EventiaWebapp.Services
                         Place = "GÖTEBORG - Scandinavium",
                         Date = new DateTime(2022, 05, 13, 15, 00, 00),
                         SeatsAvailable = 20000,
-                        //Organizer = organizers[2]
+                        
                     },
                     new()
                     {
@@ -109,20 +108,21 @@ namespace EventiaWebapp.Services
                         Place = "GÖTEBORG - Scandinavium",
                         Date = new DateTime(2022, 03, 17, 18, 30, 00),
                         SeatsAvailable = 20000,
-                        //Organizer = organizers[2]
+                        
                     },
                 };
 
-            var piasEvents = new List<Event> { events[0], events[1] };
-            var johansEvents = new List<Event> { events[2], events[3]};
-            var märtasEvents = new List<Event> { events[4], events[5]};
+            var ticketMasterEvents = new List<Event> { events[0], events[1], events[2], events[3], events[4], events[5]};
+            var johansJoinedEvents = new List<Event> { events[2], events[3]};
+            var märtasJoinedEvents = new List<Event> { events[4], events[5]};
 
 
             List<EventiaUser> eventiaUsers = new List<EventiaUser>
             {
-                new() {FirstName = "Pia", LastName = "Hagman", Email = "hagman.pia@gmail.com", UserName = "hagman.pia@gmail.com", JoinedEvents = piasEvents},
-                new() {FirstName = "Johan", LastName = "Fahlgren", Email = "johan@gmail.com", UserName = "johan@gmail.com", JoinedEvents = johansEvents },
-                new() {FirstName = "Märta", LastName = "Hjalmarson", Email = "marta@gmail.com", UserName = "marta@gmail.com", JoinedEvents = johansEvents }
+                new() {OrganizerName = "TicketMaster", Email = "info@ticketmaster.se", UserName = "info@ticketmaster.se", HostedEvents = ticketMasterEvents},
+                new() {FirstName = "Pia", LastName = "Hagman", Email = "hagman.pia@gmail.com", UserName = "hagman.pia@gmail.com"},
+                new() {FirstName = "Johan", LastName = "Fahlgren", Email = "johan@gmail.com", UserName = "johan@gmail.com", JoinedEvents = johansJoinedEvents },
+                new() {FirstName = "Märta", LastName = "Hjalmarson", Email = "marta@gmail.com", UserName = "marta@gmail.com", JoinedEvents = märtasJoinedEvents }
             };
 
             List<IdentityRole> roles = new List<IdentityRole>
@@ -138,14 +138,16 @@ namespace EventiaWebapp.Services
             await _userManager.CreateAsync(eventiaUsers[0], "@Ett2345");
             await _userManager.CreateAsync(eventiaUsers[1], "@Ett2345");
             await _userManager.CreateAsync(eventiaUsers[2], "@Ett2345");
+            await _userManager.CreateAsync(eventiaUsers[3], "@Ett2345");
 
             await _roleManager.CreateAsync(roles[0]);
             await _roleManager.CreateAsync(roles[1]);
             await _roleManager.CreateAsync(roles[2]);
 
-            await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[0]}");
-            await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[0]}");
-            await _userManager.AddToRoleAsync(eventiaUsers[2], $"{roles[0]}");
+            await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[1]}"); //Ticketmaster = Organizer
+            await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[2]}"); //Pia = Administrator
+            await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[0]}"); //Johan = Attendee
+            await _userManager.AddToRoleAsync(eventiaUsers[2], $"{roles[0]}"); //Märta = Attendee
 
             await _ctx.SaveChangesAsync();
         }

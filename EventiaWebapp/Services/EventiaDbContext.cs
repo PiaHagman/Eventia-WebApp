@@ -11,6 +11,7 @@ namespace EventiaWebapp.Services.Data
 
         public EventiaDbContext(DbContextOptions <EventiaDbContext> options) : base(options) { }
 
+
        
     }
 }

@@ -34,7 +34,6 @@
     </div>
 </header>
 
-
 <main>
     @RenderBody()
 </main>
@@ -48,7 +47,7 @@
     }
 </footer>
 
-@await RenderSectionAsync("bottom_of_body", false)
+@await RenderSectionAsync("Scripts", false)
 <script src="~/lib/bootstrap/js/bootstrap.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
 

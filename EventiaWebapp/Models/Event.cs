@@ -21,6 +21,6 @@ namespace EventiaWebapp.Models
 
         [InverseProperty("JoinedEvents")]
         
-        public ICollection<EventiaUser> Attendees { get; set; }
+        public ICollection<EventiaUser>? Attendees { get; set; }
     }
 }
