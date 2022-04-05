@@ -1,7 +1,11 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<EventiaUser> SignInManager
+@inject UserManager<EventiaUser> UserManager
 @{
     ViewData["Title"] = "Welcome";
 }
+
 
 <div class="my-container">
     <div class="main-content">
@@ -15,9 +19,22 @@
             quae doloribus vero at cumque, harum fugiat laboriosam! Magni consequatur minus voluptatem voluptates 
             eligendi cupiditate alias repellat eos quae. Corporis nemo minima recusandae, repellat nam similique 
             officiis excepturi voluptates accusantium maxime, tenetur aliquid eum tempora vel reprehenderit modi 
-            rem amet nobis fugit quidem mollitia soluta. Sint quam quod veniam esse dignissimos assumenda, porro, 
+            rem amet nobis fugit quidem mollitia soluta. Sint quam quod veniam esse dignissimos assumenda, porro. 
         </p>
-        <a class="btn btn-info my-btn" asp-page="/Regsiter">Register</a>
-        <a class="btn btn-info my-btn" asp-page="/Login">LogIn</a>  
+        
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index")">
+                    <button  type="submit" class="btn btn-info my-btn">Logout</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <a class="btn btn-info my-btn" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="btn btn-info my-btn" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        }
+        
     </div>
 </div>

@@ -1,5 +1,6 @@
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -9,13 +10,16 @@ namespace EventiaWebapp.Pages
     {
 
         private readonly EventsHandler _eventsHandler;
-        public Event evnt { get; set; }
         private readonly ILogger<JoinModel> _logger;
+        private readonly UserManager<EventiaUser> _userManager;
 
-        public JoinModel(ILogger<JoinModel> logger, EventsHandler eventsHandler)
+        public Event evnt { get; set; }
+        
+        public JoinModel(ILogger<JoinModel> logger, EventsHandler eventsHandler, UserManager<EventiaUser> userManager)
         {
             _eventsHandler = eventsHandler;
             _logger = logger;
+            _userManager = userManager;
         }
 
         public void OnGet(int eventId)
@@ -26,14 +30,9 @@ namespace EventiaWebapp.Pages
 
         public IActionResult OnPost(int evtId)
         {
-            //TODO kolla om användaren redan är registrerad på event och i så fall ge ett felmeddelande. En alert kanske? 
-            
-            var attendeeId = 1;
+            var userId = _userManager.GetUserId(User); 
 
-            
-            
-
-            var eventExists = _eventsHandler.AttendEvent(evtId, attendeeId);
+            var eventExists = _eventsHandler.AttendEvent(evtId, userId);
 
             if (eventExists)
             {

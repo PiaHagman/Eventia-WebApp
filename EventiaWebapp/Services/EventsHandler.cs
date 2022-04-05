@@ -1,5 +1,6 @@
 ﻿using EventiaWebapp.Models;
 using EventiaWebapp.Services.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
@@ -7,10 +8,12 @@ namespace EventiaWebapp.Services
     public class EventsHandler
     {
         private EventiaDbContext ctx;
-        
-        public EventsHandler(EventiaDbContext context)
+        private UserManager<EventiaUser> _userManager;
+
+        public EventsHandler(EventiaDbContext context, UserManager<EventiaUser> userManager)
         {
             ctx = context;
+            _userManager = userManager;
         }
 
         //Metod som returnerar alla events
@@ -23,37 +26,38 @@ namespace EventiaWebapp.Services
             return eventList;
         }
 
-        //Metod som returnerar ett default deltagarobjekt (alltid samma i denna uppgift)
-     /*   public Attendee GetAttendee(int id)
+        public async Task <EventiaUser> GetAttendee(string userId)
         {
+            var query = ctx.Users
+            .Include(eu => eu.JoinedEvents)
+            .ThenInclude(e => e.Organizer);
 
-            var query = ctx.Users;
-            //.Include(a => a.Events);
-            //.ThenInclude(e => e.Organizer);
+            EventiaUser eventiaUser = await query.FirstOrDefaultAsync(eu => eu.Id ==userId) ?? throw new InvalidOperationException();
+            
+            return eventiaUser;
 
-            Attendee attendee = query.FirstOrDefault() ?? throw new InvalidOperationException();
-            return attendee;
+        }
 
-            return null;
-        }*/
-
-        //Metod som registrerar ett givet deltagarobjekt med ett givet eventobjekt
-        public bool AttendEvent(int eventId, int id)
+        public bool AttendEvent(int eventId, string id)
         {
-
-     /*       var query = ctx.Events
-                .Include(e => e.Users);
+            //Plockar fram eventet givet eventId, inkluderar attendees
+            var query = ctx.Events;
+                //.Include(e => e.Attendees);
+            
             var evnt = query.FirstOrDefault(e => e.Id == eventId);
 
-            bool evntExist = evnt != null;
-            
-            if (evntExist)
+            if (evnt is not null)
             {
-                var attendee = ctx.Attendees.Include(a => a.Events).FirstOrDefault();
-                attendee.Events.Add(evnt);
+                //Plockar fram attendee
+                var attendee = ctx.Users
+                    .Include(eu => eu.JoinedEvents)
+                    .FirstOrDefault(u => u.Id==id);
+                
+                attendee.JoinedEvents.Add(evnt);
+                
                 ctx.SaveChanges();
                 return true;
-            }*/
+            }
             return false;
         }
         //Metod som returnerar en lista på alla events som ett givet deltagarobjekt deltar i

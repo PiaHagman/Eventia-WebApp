@@ -92,7 +92,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
 
                     var userId = await _userManager.GetUserIdAsync(user);
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _signInManager.SignInAsync(user,  false);
                     return LocalRedirect(returnUrl);
                     
                 }
