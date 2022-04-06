@@ -34,7 +34,7 @@ namespace EventiaWebapp.Pages
             var userId = _userManager.GetUserId(User); 
 
             var eventExists = _eventsHandler.AttendEvent(evtId, userId);
-
+            
             if (eventExists)
             {
                 return RedirectToPage("ConfirmedEvent", new {eventId = evtId});

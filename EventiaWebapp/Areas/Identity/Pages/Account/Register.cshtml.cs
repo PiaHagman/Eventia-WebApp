@@ -1,6 +1,4 @@
-﻿
-#nullable disable
-
+﻿#nullable disable
 using System.ComponentModel.DataAnnotations;
 using EventiaWebapp.Models;
 using Microsoft.AspNetCore.Authorization;

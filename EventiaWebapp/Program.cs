@@ -5,6 +5,19 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
+//TODO Check if there are available seats and decrease number og available seats
+//TODO Check how to use _viewImports better
+//TODO Write report
+//TODO Use ILogger and handle "nullable-situations"/Error-handling
+//TODO Make sure that database is not deleted before start 
+//TODO Be able to unbook events
+//TODO AdministratorHandler with method to authorize user to organizer
+//TODO New page for administrators
+//TODO New page - Add event for organizer
+//TODO UserName must be shown in header
+//TODO Add username to regsitration
+
+
 #region Konfigurering
 
 var builder = WebApplication.CreateBuilder(args);

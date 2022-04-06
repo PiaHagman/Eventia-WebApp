@@ -145,9 +145,9 @@ namespace EventiaWebapp.Services
             await _roleManager.CreateAsync(roles[2]);
 
             await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[1]}"); //Ticketmaster = Organizer
-            await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[2]}"); //Pia = Administrator
-            await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[0]}"); //Johan = Attendee
-            await _userManager.AddToRoleAsync(eventiaUsers[2], $"{roles[0]}"); //Märta = Attendee
+            await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[2]}"); //Pia = Administrator
+            await _userManager.AddToRoleAsync(eventiaUsers[2], $"{roles[0]}"); //Johan = Attendee
+            await _userManager.AddToRoleAsync(eventiaUsers[3], $"{roles[0]}"); //Märta = Attendee
 
             await _ctx.SaveChangesAsync();
         }
