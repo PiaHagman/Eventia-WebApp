@@ -91,6 +91,7 @@ header {
    
 }
 
+
 .my-container {
     display: flex;
     justify-content: center;
@@ -173,22 +174,33 @@ header {
     max-width: 400px;
 }
 
-#registerForm, #account {
+#registerForm, #account #personalData{
     display: flex;
     flex-direction: column;
     
 }
 
-#registerForm > *, #account > * {
-    margin: 5px 0px;
-}
+    #registerForm > *,
+    #account > *,
+    #profile-form > *,
+    #email-form > *,
+    #change-password-form > * {
+        margin: 5px 0px;
+    }
 
-#registerForm button, #account button {
-    align-self: flex-end;
-    margin-top: 15px;
-    margin-right: 0;
-}
+    #registerForm button,
+    #account button,
+    #profile-form button,
+    #email-form button,
+    #change-password-form button{
+        align-self: flex-end;
+        margin-top: 15px;
+        margin-right: 0;
+    }
 
+#personalData {
+    max-width: 400px;
+}
 .space-between {
     display: flex;
     flex-direction: row;
@@ -196,15 +208,18 @@ header {
 }
 .login-extra-links {
     margin-top: 50px !important;
-}   
-.login-extra-links a {
+}
+
+.my-managepages-container {
+    padding: 0;
+}
+/*.login-extra-links a {
     color: #5b0e2d;
     text-decoration: none;
 }
     .login-extra-links a:hover {
         font-weight: bold;
-    }
-
+    }*/
 .login-extra-links p {
     text-align: center;
     font-size: small;
@@ -226,3 +241,5 @@ header {
 footer a {
     font-size: smaller;
 }
+
+

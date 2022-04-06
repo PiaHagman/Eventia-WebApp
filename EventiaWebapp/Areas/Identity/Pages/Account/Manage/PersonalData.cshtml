@@ -2,27 +2,28 @@
 @model PersonalDataModel
 @{
     ViewData["Title"] = "Personal Data";
-    //ViewData["ActivePage"] = ManageNavPages.PersonalData;
+    ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
 
-<div my-container>
-
-    <h3>@ViewData["Title"]</h3>
+<div class="my-managepages-container">
     <div>
-        <p>Your account contains personal data that you have given us. This page allows you to delete that data.</p>
-        <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
-        </p>
-        @*<form id="download-data" asp-page="DownloadPersonalData" method="post">
+        @*<div id="personalData">*@
+            @*<h4>@ViewData["Title"]</h4>*@
+            <p>Your account contains personal data that you have given us. This page allows you to delete that data.</p>
+            <p>
+                <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+            </p>
+            @*<form id="download-data" asp-page="DownloadPersonalData" method="post">
             <button class="btn btn-info my-btn confirm-btn" type="submit">Download</button>
         </form>*@
-        <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-info my-btn confirm-btn">Delete</a>
-        </p>
+            <p>
+                <a id="delete" asp-page="DeletePersonalData" class="btn btn-info my-btn">Delete</a>
+            </p>
+        </div>
     </div>
 
-</div>
+
 
 @*@section Scripts {
     <partial name="_ValidationScriptsPartial" />
