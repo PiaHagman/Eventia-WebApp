@@ -1,7 +1,6 @@
 ﻿using EventiaWebapp.Models;
 using EventiaWebapp.Services.Data;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {

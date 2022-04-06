@@ -29,9 +29,11 @@ using Microsoft.EntityFrameworkCore;
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddScoped<EventsHandler>();
-
+builder.Services.AddScoped<EventsHandler>(); 
+   builder.Services.AddScoped<EventiaUserHandler>();
+   builder.Services.AddScoped<AdminHandler>();
 builder.Services.AddScoped<DatabaseHandler>();
+
 if (builder.Environment.IsDevelopment())
 {
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -75,17 +77,17 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsProduction())
     {
-        //await database.CreateIfNotExists();
+        await database.CreateIfNotExists();
         app.UseExceptionHandler("/Error");
     }
 
     if (app.Environment.IsDevelopment())
     {
-        //await database.CreateAndSeedIfNotExist();
+        await database.CreateAndSeedIfNotExist();
         app.UseDeveloperExceptionPage();
     }
 
-    await database.RecreateAndSeed();
+    //await database.RecreateAndSeed();
 }
 
 #endregion

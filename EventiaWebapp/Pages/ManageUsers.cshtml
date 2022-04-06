@@ -1,0 +1,37 @@
+﻿@page
+@model EventiaWebapp.Pages.ManageUsersModel
+@inject AdminHandler _adminHandler
+@{
+    ViewData["Title"] = "Manage Users";
+    List<EventiaUser> eventiaUsersList = _adminHandler.GetEventiaUsers();
+}
+    <div class="my-container">
+        <div class="card my-eventlist">
+            <h1>Manage Users</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Is Organizer</th>
+                    <th scope="col">Applied to become Organizer</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var item in eventiaUsersList)
+                {
+                    <tr>
+                        <th scope="row">@item.UserName</th>
+                        <td>@item.Email</td>
+                        @*<td>@item.</td>
+                        <td>@item.Place</td>
+                        <td>@item.Organizer.OrganizerName</td>*@
+                    </tr>
+                }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
