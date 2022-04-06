@@ -13,9 +13,13 @@
                 <button type="submit" class="btn btn-info my-btn confirm-btn">Apply for Organizer status</button>
             </form>
         }
-        else
+        else if (User.IsInRole("organizer"))
         {
-            <p>You are already an assigned Organizer!</p>
+            <p>You are already an assigned Organizer.</p>
+        }
+        else if (User.IsInRole("administrator"))
+        {
+            <p>You are already an assigned Administrator.</p>
         }
 
     </div>

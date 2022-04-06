@@ -129,7 +129,8 @@ namespace EventiaWebapp.Services
             {
                 new() {Name = "user"},  
                 new() {Name = "organizer"},
-                new() {Name = "administrator"}
+                new() {Name = "administrator"},
+                new() {Name = "applyingForOrganizer"}
             };
 
           
@@ -143,6 +144,7 @@ namespace EventiaWebapp.Services
             await _roleManager.CreateAsync(roles[0]);
             await _roleManager.CreateAsync(roles[1]);
             await _roleManager.CreateAsync(roles[2]);
+            await _roleManager.CreateAsync(roles[3]);
 
             await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[1]}"); //Ticketmaster = Organizer
             await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[2]}"); //Pia = Administrator
