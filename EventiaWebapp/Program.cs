@@ -16,11 +16,15 @@ using Microsoft.EntityFrameworkCore;
 //TODO New page - Add event for organizer
 //TODO UserName must be shown in header
 //TODO Add username to regsitration
-
+//TODO _signInManager.IsSignedIn vs User.Identity.IsAuthenticated => Been using both types in _Layout.cshtml
+//TODO Skillnad?
+            /*< p > Logged in as: @User.Identity.Name </ p >
+            < p > @_userManager.GetUserName(User) </ p >*/
+//TODO
 
 #region Konfigurering
 
-var builder = WebApplication.CreateBuilder(args);
+   var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();

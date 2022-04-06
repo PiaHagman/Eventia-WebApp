@@ -14,6 +14,16 @@ body {
     min-height: 100vh;
 }
 
+a {
+    color: #5b0e2d;
+    text-decoration: none;
+}
+
+a:hover {
+    font-weight: bold;
+    color: #5b0e2d;
+}
+
 a:hover {
     cursor: pointer;
 }
@@ -30,6 +40,12 @@ header {
     position: fixed;
     top: 0;
     max-width: 1200px;
+}
+
+.headerUsername {
+    font-size: small;
+    text-align: center;
+    margin-bottom: 0px;
 }
 
 .logo, h1 {
@@ -153,7 +169,7 @@ header {
     padding: 10px;
     width: 1000px;
 }
-.row {
+.my-row {
     max-width: 400px;
 }
 
@@ -208,8 +224,5 @@ header {
     }
 
 footer a {
-    color: #5b0e2d;
-    text-decoration: none;
     font-size: smaller;
-
 }
