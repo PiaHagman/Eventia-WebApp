@@ -1,11 +1,13 @@
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventiaWebapp.Pages
 {
+    [Authorize]
     public class JoinModel : PageModel
     {
 
@@ -14,7 +16,7 @@ namespace EventiaWebapp.Pages
         private readonly UserManager<EventiaUser> _userManager;
 
         [BindProperty]
-        public Event evnt { get; set; } 
+        public Event? Evnt { get; set; } 
 
         public JoinModel(ILogger<JoinModel> logger, EventsHandler eventsHandler, UserManager<EventiaUser> userManager)
         {
@@ -25,7 +27,7 @@ namespace EventiaWebapp.Pages
 
         public void OnGet(int eventId)
         {
-            evnt = _eventsHandler.GetEvents().Find(e => e.Id == eventId);
+            Evnt = _eventsHandler.GetEvents().Find(e => e.Id == eventId);
 
         }
 

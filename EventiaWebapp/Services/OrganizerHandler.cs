@@ -1,5 +1,7 @@
 ﻿using EventiaWebapp.Models;
+using EventiaWebapp.Pages;
 using EventiaWebapp.Services.Data;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
@@ -7,6 +9,7 @@ namespace EventiaWebapp.Services
     public class OrganizerHandler
     {
         private readonly EventiaDbContext _ctx;
+       
 
         public OrganizerHandler(EventiaDbContext ctx)
         {
@@ -30,6 +33,29 @@ namespace EventiaWebapp.Services
                 DateTime.Compare(date1.Date, date2.Date));
 
             return hostedEvents;
+        }
+
+        public async Task<bool> AddEvent(AddEventModel.InputModel model, EventiaUser organizer)
+        {
+            var addedEvent=
+            await _ctx.Events.AddAsync(new Event
+            {
+                Title = model.Title,
+                Description = model.Description,
+                Place = model.Place,
+                Date = model.Date,
+                SeatsAvailable = model.NoOfSeats,
+                Organizer = organizer
+            });
+
+            if (addedEvent != null)
+            {
+                await _ctx.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+
         }
     }
 

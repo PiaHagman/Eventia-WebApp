@@ -13,7 +13,7 @@
     var myEvents = await _eventsHandler.GetMyEvents(_userManager.GetUserId(User));
     var eventsIdList = myEvents.Select(e => e.Id).ToList();
 
-    @if (eventsIdList.Contains(@Model.evnt.Id))
+    @if (eventsIdList.Contains(@Model.Evnt.Id))
     {
         evntAlreadyBooked = true;
     }
@@ -26,9 +26,9 @@
                 <p>Join this event?</p>
             </div>
             <div class="card-body">
-                <h1 class="card-title">@Model.evnt.Title</h1>
-                <p class="card-text">@Model.evnt.Description</p>
-                <p><i>Tickets available: @Model.evnt.SeatsAvailable</i></p>
+                <h1 class="card-title">@Model.Evnt.Title</h1>
+                <p class="card-text">@Model.Evnt.Description</p>
+                <p><i>Tickets available: @Model.Evnt.SeatsAvailable</i></p>
                 
                 @if (evntAlreadyBooked)
                 {
@@ -37,13 +37,13 @@
                 }
                 else
                 {
-                    <form method="post" asp-route-evtId="@Model.evnt.Id">
+                    <form method="post" asp-route-evtId="@Model.Evnt.Id">
                         <button class="btn btn-info my-btn confirm-btn">Confirm Booking</button>
                     </form>
                 }
             </div>
                 <div class="card-footer text-muted">
-                    <p>@Model.evnt.Date.ToShortDateString() - @Model.evnt.Date.ToShortTimeString()  &emsp; <b>|</b> &emsp; @Model.evnt.Place   &emsp;<b>|</b>&emsp;   @Model.evnt.Organizer.OrganizerName </p>
+                    <p>@Model.Evnt.Date.ToShortDateString() - @Model.Evnt.Date.ToShortTimeString()  &emsp; <b>|</b> &emsp; @Model.Evnt.Place   &emsp;<b>|</b>&emsp;   @Model.Evnt.Organizer.OrganizerName </p>
                 </div>
         </div>
     </div>

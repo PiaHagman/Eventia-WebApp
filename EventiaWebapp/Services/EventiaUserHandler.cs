@@ -32,8 +32,8 @@ namespace EventiaWebapp.Services
             //eventiaUser.Application = new Application();
             _ctx.Applications.Add(new Application());
 
-            /*_userManager.RemoveFromRoleAsync(eventiaUser, "user");
-            _userManager.AddToRoleAsync(eventiaUser, "applyingForOrganizer");*/
+            /*_UserManager.RemoveFromRoleAsync(eventiaUser, "user");
+            _UserManager.AddToRoleAsync(eventiaUser, "applyingForOrganizer");*/
             _ctx.SaveChanges();
             return true;
         }

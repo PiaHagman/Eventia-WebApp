@@ -1,6 +1,7 @@
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
 using EventiaWebapp.Services.Data;
+    using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +21,7 @@ using Microsoft.EntityFrameworkCore;
 //TODO Skillnad?
             /*< p > Logged in as: @User.Identity.Name </ p >
             < p > @_userManager.GetUserName(User) </ p >*/
-//TODO
+//TODO Fix default [Autorize] in program.cs
 
 #region Konfigurering
 
@@ -48,6 +49,13 @@ builder.Services.AddDefaultIdentity<EventiaUser>(options => options.SignIn.Requi
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<EventiaDbContext>();
 
+/*builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});*/
+
 #endregion
 
 #region Middleware Pipelining
@@ -58,18 +66,21 @@ app.UseRouting();
 
 //Middleware-steg som tillhör Identity-paketet. M�ste ligga efter UseRouting och i den ordningen som de st�r nu.
 app.UseAuthentication(); 
-app.UseAuthorization(); 
+app.UseAuthorization();
 
-app.MapControllerRoute(
-    "myEvents",
-    "myevents/{id}",
-    new { controller = "Events", action = "MyEvents" });
+   app.MapControllerRoute(
+       "myEvents",
+       "myevents/{id}",
+       new {controller = "Events", action = "MyEvents"});
+    //.RequireAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
+   app.MapControllerRoute(
+       name: "default",
+       pattern: "{controller}/{action=Index}/{id?}");
+    //.RequireAuthorization();
 
-app.MapRazorPages();
+   app.MapRazorPages();
+    //.RequireAuthorization();
 
 using (var scope = app.Services.CreateScope())
 {
@@ -78,17 +89,17 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsProduction())
     {
-        await database.CreateIfNotExists();
+        //await database.CreateIfNotExists();
         app.UseExceptionHandler("/Error");
     }
 
     if (app.Environment.IsDevelopment())
     {
-        await database.CreateAndSeedIfNotExist();
+        //await database.CreateAndSeedIfNotExist();
         app.UseDeveloperExceptionPage();
     }
 
-    //await database.RecreateAndSeed();
+    await database.RecreateAndSeed();
 }
 
 #endregion

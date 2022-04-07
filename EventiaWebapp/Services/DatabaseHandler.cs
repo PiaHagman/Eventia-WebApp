@@ -132,8 +132,6 @@ namespace EventiaWebapp.Services
                 new() {Name = "administrator"},
             };
 
-          
-
             await _ctx.AddRangeAsync(events);
             await _userManager.CreateAsync(eventiaUsers[0], "@Ett2345");
             await _userManager.CreateAsync(eventiaUsers[1], "@Ett2345");

@@ -28,7 +28,7 @@ namespace EventiaWebapp.Services
         public async Task<EventiaUser> GetAttendee(string userId)
         {
             var query = ctx.Users
-            .Include(eu => eu.JoinedEvents)
+                .Include(eu => eu.JoinedEvents)!
             .ThenInclude(e => e.Organizer);
 
             EventiaUser eventiaUser = await query.FirstOrDefaultAsync(eu => eu.Id ==userId) ?? throw new InvalidOperationException();
