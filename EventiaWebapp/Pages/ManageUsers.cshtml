@@ -24,10 +24,21 @@
                     <tr>
                         <th scope="row">@item.UserName</th>
                         <td>@item.Email</td>
-                        @*<td>@item.</td>
-                        <td>@item.Place</td>
-                        <td>@item.Organizer.OrganizerName</td>*@
-                    </tr>
+                        
+                        <td>
+                            @if (@item.FirstName == "Pia")
+                            {
+                                <input type="checkbox" checked="checked" asp-for="Input.IsOrganizer"/>
+                            }else{
+                            <input type="checkbox" asp-for="Input.IsOrganizer"/>
+
+                            }
+                        </td>
+                        <td>
+                            <input type="checkbox" asp-for="Input.HasAppliedForOrganizer"/>
+                        </td>
+                    
+                        </tr>
                 }
 
                 </tbody>

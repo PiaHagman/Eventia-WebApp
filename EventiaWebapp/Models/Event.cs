@@ -16,8 +16,6 @@ namespace EventiaWebapp.Models
 
         
         [InverseProperty("HostedEvents")]
-        //[DisplayName("Organizer")]
-        
         public EventiaUser Organizer { get; set; }
 
         [InverseProperty("JoinedEvents")]
