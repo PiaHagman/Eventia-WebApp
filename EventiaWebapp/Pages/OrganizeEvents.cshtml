@@ -1,0 +1,35 @@
+﻿ @page
+ @model EventiaWebapp.Pages.OrganizeEventsModel
+ @inject EventsHandler _eventsHandler
+
+ @{
+     ViewData["Title"] = "Organize Events";
+ }
+ <div class="my-container">
+     <div class="card my-eventlist">
+         <h1>Organize Events</h1>
+         <table class="table">
+             <thead>
+             <tr>
+                 <th scope="col">Event</th>
+                 <th scope="col">Date</th>
+                 <th scope="col">Time</th>
+                 <th scope="col">Location</th>
+             </tr>
+             </thead>
+             <tbody>
+
+             @foreach (var item in @Model.HostedEvents)
+             {
+                 <tr>
+                     <th scope="row">@item.Title</th>
+                     <td>@item.Date.ToShortDateString()</td>
+                     <td>@item.Date.ToShortTimeString()</td>
+                     <td>@item.Place</td>
+                 </tr>
+             }
+
+             </tbody>
+         </table>
+     </div>
+ </div>

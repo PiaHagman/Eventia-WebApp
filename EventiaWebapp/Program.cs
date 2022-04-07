@@ -32,6 +32,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<EventsHandler>(); 
    builder.Services.AddScoped<EventiaUserHandler>();
    builder.Services.AddScoped<AdminHandler>();
+   builder.Services.AddScoped<OrganizerHandler>();
 builder.Services.AddScoped<DatabaseHandler>();
 
 if (builder.Environment.IsDevelopment())

@@ -27,15 +27,20 @@
                 </div>
 
                 <ul class="nav navbar-nav">
-                    <li><a class="nav-link" asp-page="/Index">Home</a></li>
-                    <li><a class="nav-link" asp-controller="Events" asp-action="Index">Events</a></li>
+                    @*<li><a class="nav-link" asp-page="/Index">Home</a></li>*@
+                    <li><a class="nav-link" asp-controller="Events" asp-action="Index">Events &emsp;<b>|</b></a></li>
                     @if (User.IsInRole("user"))
                     {
-                        <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events</a></li>
+                        <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events &emsp;<b>|</b></a></li>
                     }
                     @if (User.IsInRole("administrator"))
                     {
                         <li><a class="nav-link" asp-page="/ManageUsers">Manage Users</a></li>
+                    }
+                    @if (User.IsInRole("organizer"))
+                    {
+                        <li><a class="nav-link" asp-page="/OrganizeEvents">Organize Events &emsp;<b>|</b></a></li>
+                        <li><a class="nav-link" asp-page="/AddEvent">Add Event </a></li>
                     }
                     
 
