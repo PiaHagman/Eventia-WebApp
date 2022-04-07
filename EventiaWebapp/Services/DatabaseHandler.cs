@@ -121,7 +121,7 @@ namespace EventiaWebapp.Services
             {
                 new() {OrganizerName = "TicketMaster", Email = "info@ticketmaster.se", UserName = "info@ticketmaster.se", HostedEvents = ticketMasterEvents},
                 new() {FirstName = "Pia", LastName = "Hagman", Email = "hagman.pia@gmail.com", UserName = "hagman.pia@gmail.com"},
-                new() {FirstName = "Johan", LastName = "Fahlgren", Email = "johan@gmail.com", UserName = "johan@gmail.com", JoinedEvents = johansJoinedEvents },
+                new() {FirstName = "Johan", LastName = "Fahlgren", Email = "johan@gmail.com", UserName = "johan@gmail.com", JoinedEvents = johansJoinedEvents, Application = new Application()},
                 new() {FirstName = "Märta", LastName = "Hjalmarson", Email = "marta@gmail.com", UserName = "marta@gmail.com", JoinedEvents = märtasJoinedEvents }
             };
 
@@ -130,7 +130,6 @@ namespace EventiaWebapp.Services
                 new() {Name = "user"},  
                 new() {Name = "organizer"},
                 new() {Name = "administrator"},
-                new() {Name = "applyingForOrganizer"}
             };
 
           
@@ -144,7 +143,6 @@ namespace EventiaWebapp.Services
             await _roleManager.CreateAsync(roles[0]);
             await _roleManager.CreateAsync(roles[1]);
             await _roleManager.CreateAsync(roles[2]);
-            await _roleManager.CreateAsync(roles[3]);
 
             await _userManager.AddToRoleAsync(eventiaUsers[0], $"{roles[1]}"); //Ticketmaster = Organizer
             await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[2]}"); //Pia = Administrator

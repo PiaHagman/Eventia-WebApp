@@ -34,7 +34,7 @@ namespace EventiaWebapp.Pages
                 return RedirectToPage("./ConfirmedRequest");
             }
 
-            _logger.LogError("Can't update role to applyingForOrganizer-role");
+            _logger.LogError("Applications failed");
             return RedirectToPage("/Error", new
             {
                 errorMessage =

@@ -11,9 +11,11 @@ namespace EventiaWebapp.Models
 
        public string? OrganizerName { get; set; }
 
-            
+       
+        public Application? Application { get; set; }
         public ICollection <Event>? HostedEvents { get; set; }
         public ICollection<Event>? JoinedEvents { get; set; }
+        
 
         
 

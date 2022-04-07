@@ -20,5 +20,15 @@ namespace EventiaWebapp.Services
                 .ToList();
             return users;
         }
+
+        public List<EventiaUser> GetUsersWithApplication()
+        {
+            var usersList = _ctx.Users
+                .Include(eu => eu.Application)
+                .Where(eu => eu.Application != null)
+                .ToList();
+            
+            return usersList;
+        }
     }
 }

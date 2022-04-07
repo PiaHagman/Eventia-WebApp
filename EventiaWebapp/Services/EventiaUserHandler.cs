@@ -20,15 +20,21 @@ namespace EventiaWebapp.Services
         {
             var eventiaUser = _ctx.Users
                 .FirstOrDefault(eu => eu.Id == userId);
+                //Find(userID);
 
             if (eventiaUser == null)
             {
                 return false;
             }
+            
+            //Funkar ej!!
+            //_ctx.Applications.Add(new Application());
+            //eventiaUser.Application = new Application();
+            _ctx.Applications.Add(new Application());
 
-            _userManager.RemoveFromRoleAsync(eventiaUser, "user");
-            _userManager.AddToRoleAsync(eventiaUser, "applyingForOrganizer");
-            _ctx.SaveChangesAsync();
+            /*_userManager.RemoveFromRoleAsync(eventiaUser, "user");
+            _userManager.AddToRoleAsync(eventiaUser, "applyingForOrganizer");*/
+            _ctx.SaveChanges();
             return true;
         }
 
