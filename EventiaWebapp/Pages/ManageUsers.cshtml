@@ -1,44 +1,70 @@
 ﻿@page
+@using Microsoft.AspNetCore.Identity
 @model EventiaWebapp.Pages.ManageUsersModel
-@inject AdminHandler _adminHandler
+@inject UserManager<EventiaUser> _userManager
+
 @{
+
     ViewData["Title"] = "Manage Users";
-    List<EventiaUser> eventiaUsersList = _adminHandler.GetEventiaUsers();
+    
 }
-    <div class="my-container">
+<div class="my-container">
+    <div class="card my-eventlist">
+        <h1>Applicants for Organizer Role</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">Confirm Application</th>
+                    
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach (var item in @Model.UserApplyingForOrganizer)
+            {
+                <tr>
+                    <th scope="row">@item.UserName</th>
+                    <td>@item.Email</td>
+                    <td>
+                        <form method="post" asp-route-userId="@item.Id">
+                            <button class="btn btn-info my-btn confirm-btn">Accept Application</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<div class="my-container">
         <div class="card my-eventlist">
-            <h1>Manage Users</h1>
+            <h1>All Users</h1>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Is Organizer</th>
-                    <th scope="col">Applied to become Organizer</th>
+                    <th scope="col">Role</th>
+                    
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach (var item in eventiaUsersList)
+                @foreach (var item in @Model.EventiaUsersList)
                 {
+                    var roles = await _userManager.GetRolesAsync(item);
+
                     <tr>
                         <th scope="row">@item.UserName</th>
                         <td>@item.Email</td>
-                        
-                        <td>
-                            @if (@item.FirstName == "Pia")
-                            {
-                                //<input type="checkbox" checked="checked" asp-for="Input.IsOrganizer"/>
-                            }else{
-                            //<input type="checkbox" asp-for="Input.IsOrganizer"/>
-
-                            }
-                        </td>
-                        <td>
-                          @* <input type="checkbox" asp-for="Input.HasAppliedForOrganizer"/>*@
-                        </td>
-                    
-                        </tr>
+                        <td>@roles[0]</td>
+                    </tr>
                 }
 
                 </tbody>

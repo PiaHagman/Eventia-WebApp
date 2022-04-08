@@ -1,6 +1,7 @@
 ﻿using EventiaWebapp.Models;
 using EventiaWebapp.Services.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {
@@ -19,6 +20,7 @@ namespace EventiaWebapp.Services
         public bool UpdateRoleRequest(string userId)
         {
             var eventiaUser = _ctx.Users
+                .Include(eu => eu.Application)
                 .FirstOrDefault(eu => eu.Id == userId);
                 //Find(userID);
 
@@ -27,13 +29,8 @@ namespace EventiaWebapp.Services
                 return false;
             }
             
-            //Funkar ej!!
-            //_ctx.Applications.Add(new Application());
-            //eventiaUser.Application = new Application();
-            _ctx.Applications.Add(new Application());
-
-            /*_UserManager.RemoveFromRoleAsync(eventiaUser, "user");
-            _UserManager.AddToRoleAsync(eventiaUser, "applyingForOrganizer");*/
+            eventiaUser.Application = new Application();
+            
             _ctx.SaveChanges();
             return true;
         }

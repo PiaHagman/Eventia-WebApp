@@ -12,25 +12,41 @@ namespace EventiaWebapp.Pages
     public class ManageUsersModel : PageModel
     {
         public AdminHandler _adminHandler;
+        private readonly ILogger<ManageUsersModel> _logger;
 
-        public ManageUsersModel(AdminHandler adminHandler)
+        public ManageUsersModel(AdminHandler adminHandler,  
+            ILogger<ManageUsersModel> logger)
         {
             _adminHandler = adminHandler;
+            _logger = logger;
         }
 
-        public List<EventiaUser> userAppplyingForOrganizer { get; set; }
-
-     /*   public class InputModel
-        {
-            //[Display(Name = "Remember me?")] 
-            //public List<IdentityRole> IsOrganizer { get; set; } = new List<IdentityRole>();
-            public bool IsOrganizer { get; set; }
-            public bool HasAppliedForOrganizer { get; set; }
-        }*/
+        public List<EventiaUser> UserApplyingForOrganizer { get; set; }
+        public List<EventiaUser> EventiaUsersList { get; set; }
 
         public void OnGet()
         {
-            userAppplyingForOrganizer = _adminHandler.GetUsersWithApplication();
+            EventiaUsersList = _adminHandler.GetEventiaUsers();
+            UserApplyingForOrganizer = _adminHandler.GetUsersWithApplication();
+        }
+
+        public async Task <IActionResult> OnPost(string userId)
+        {
+            bool isOrganizer = await _adminHandler.UpgradeToOrganizer(userId);
+
+            if (isOrganizer)
+            {
+                return RedirectToPage("/ManageUsers");
+
+            }
+            
+            _logger.LogError("Event is missing");
+            return RedirectToPage("/Error", new
+            {
+                errorMessage =
+                "This event can't be found, please try again."
+            });
+            
         }
     }
 }

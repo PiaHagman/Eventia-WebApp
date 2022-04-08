@@ -28,10 +28,18 @@
 
                 <ul class="nav navbar-nav">
                     @*<li><a class="nav-link" asp-page="/Index">Home</a></li>*@
-                    <li><a class="nav-link" asp-controller="Events" asp-action="Index">Events &emsp;<b>|</b></a></li>
+                @if (!_signInManager.IsSignedIn(User))
+                        {
+                            <li><a class="nav-link" asp-controller="Events" asp-action="Index"><b>Upcoming Events</b></a></li>
+                        }
+                else
+                {
+                    <li><a class="nav-link" asp-controller="Events" asp-action="Index">Upcoming Events &emsp;<b>|</b></a></li>
+                }
+
                     @if (User.IsInRole("user"))
                     {
-                        <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events &emsp;<b>|</b></a></li>
+                        <li><a class="nav-link" asp-controller="Events" asp-action="MyEvents">My Events</a></li>
                     }
                     @if (User.IsInRole("administrator"))
                     {

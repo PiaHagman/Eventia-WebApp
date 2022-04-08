@@ -3,7 +3,7 @@
     public class Application
     {
         public int Id { get; set; }
-        private ICollection<EventiaUser>? Applicants { get; set; }
+        public ICollection<EventiaUser>? Applicants { get; set; }
 
     }
 }
