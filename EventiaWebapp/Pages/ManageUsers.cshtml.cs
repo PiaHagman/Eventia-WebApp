@@ -40,11 +40,11 @@ namespace EventiaWebapp.Pages
 
             }
             
-            _logger.LogError("Event is missing");
+            _logger.LogError("Role cannot be updated");
             return RedirectToPage("/Error", new
             {
                 errorMessage =
-                "This event can't be found, please try again."
+                "Something went wrong, please try again."
             });
             
         }

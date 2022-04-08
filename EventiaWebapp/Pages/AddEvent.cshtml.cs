@@ -66,7 +66,7 @@ namespace EventiaWebapp.Pages
 
                 if (isAdded)
                 {
-                    return RedirectToPage("/index");
+                    return LocalRedirect("/OrganizeEvents");
                 }
                 else
                 {
