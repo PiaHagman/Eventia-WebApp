@@ -1,5 +1,5 @@
 html {
-    background-color: #e6e0da;
+    background-color: #ffffff;
 }
 
 body {
@@ -12,6 +12,11 @@ body {
     color: #5b0e2d;
     position: relative;
     min-height: 100vh;
+    font-size: smaller;
+}
+
+h1 {
+    font-size: 30px;
 }
 
 a {
@@ -44,13 +49,28 @@ header {
 
 .headerUsername {
     font-size: small;
-    text-align: center;
-    margin-bottom: 0px;
+    text-align: right;
+    margin-right: 10px;
 }
 
 .logo, h1 {
     font-family: 'Sigmar One', cursive;
     color: #5b0e2d !important;
+}
+.logo {
+    font-size: 25px;
+}
+
+.logo:hover {
+    font-weight: normal !important;
+}
+.my-nav-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.my-nav-container {
+    padding: 0;
 }
 
 .nav > li a {
@@ -66,9 +86,10 @@ header {
     background-color: #E38B75;
     color: rgba(246, 245, 255, 0.99);
     border: none;
-    width: 100px;
+    width: 90px;
     transition: none;
     margin: 10px;
+    padding: 2px;
 }
 
     .my-btn:hover {
@@ -116,6 +137,8 @@ header {
         margin: 10px;
     }
 
+
+
 .my-accordion {
     width: 80%;
     background-color: #ffccb0;
@@ -153,7 +176,7 @@ header {
     align-items: center;
 }
 
-    .my-card h3, p {
+    .my-card h3, .my-card p {
         padding: 0px 70px;
         color: #5b0e2d;
     }
@@ -207,19 +230,23 @@ header {
     justify-content: space-between;
 }
 .login-extra-links {
-    margin-top: 50px !important;
+    margin-top: 30px !important;
+}
+
+.my-login-section {
+    text-align: center;
+    font-size: smaller;
+    margin-top: 20px;
 }
 
 .my-managepages-container {
     padding: 0;
 }
-/*.login-extra-links a {
-    color: #5b0e2d;
-    text-decoration: none;
+
+.my-manage-users-container {
+    margin-top: 15px;
+    padding: 0;
 }
-    .login-extra-links a:hover {
-        font-weight: bold;
-    }*/
 .login-extra-links p {
     text-align: center;
     font-size: small;

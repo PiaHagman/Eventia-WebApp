@@ -12,16 +12,14 @@ using Microsoft.EntityFrameworkCore;
 //TODO Use ILogger and handle "nullable-situations"/Error-handling
 //TODO Make sure that database is not deleted before start 
 //TODO Be able to unbook events
-//TODO AdministratorHandler with method to authorize user to organizer
-//TODO New page for administrators
-//TODO New page - Add event for organizer
-//TODO UserName must be shown in header
-//TODO Add username to regsitration
+//TODO UserName in header - name instead
+//TODO Add username to regisitration
 //TODO _signInManager.IsSignedIn vs User.Identity.IsAuthenticated => Been using both types in _Layout.cshtml
 //TODO Skillnad?
             /*< p > Logged in as: @User.Identity.Name </ p >
             < p > @_userManager.GetUserName(User) </ p >*/
 //TODO Fix default [Autorize] in program.cs
+//TODO MErga in bransch
 
 #region Konfigurering
 
@@ -89,17 +87,17 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsProduction())
     {
-        //await database.CreateIfNotExists();
+        await database.Migrate();
         app.UseExceptionHandler("/Error");
     }
 
     if (app.Environment.IsDevelopment())
     {
-        //await database.CreateAndSeedIfNotExist();
+        await database.CreateAndSeedIfNotExist();
         app.UseDeveloperExceptionPage();
     }
 
-    await database.RecreateAndSeed();
+    //await database.RecreateAndSeed();
 }
 
 #endregion

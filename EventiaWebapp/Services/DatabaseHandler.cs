@@ -1,6 +1,7 @@
 ﻿using EventiaWebapp.Models;
 using EventiaWebapp.Services.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventiaWebapp.Services
 {
@@ -33,6 +34,11 @@ namespace EventiaWebapp.Services
         public async Task CreateIfNotExists()
         {
             await _ctx.Database.EnsureCreatedAsync();
+        }
+
+        public async Task Migrate()
+        {
+            await _ctx.Database.MigrateAsync();
         }
 
         //developerMode
@@ -133,10 +139,10 @@ namespace EventiaWebapp.Services
             };
 
             await _ctx.AddRangeAsync(events);
-            await _userManager.CreateAsync(eventiaUsers[0], "@Ett2345");
-            await _userManager.CreateAsync(eventiaUsers[1], "@Ett2345");
-            await _userManager.CreateAsync(eventiaUsers[2], "@Ett2345");
-            await _userManager.CreateAsync(eventiaUsers[3], "@Ett2345");
+            await _userManager.CreateAsync(eventiaUsers[0], "*Ett2345");
+            await _userManager.CreateAsync(eventiaUsers[1], "*Ett2345");
+            await _userManager.CreateAsync(eventiaUsers[2], "*Ett2345");
+            await _userManager.CreateAsync(eventiaUsers[3], "*Ett2345");
 
             await _roleManager.CreateAsync(roles[0]);
             await _roleManager.CreateAsync(roles[1]);

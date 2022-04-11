@@ -1,4 +1,5 @@
 ﻿@page
+@inject IWebHostEnvironment _environment
 @model LoginModel
 
 @{
@@ -33,10 +34,23 @@
                     </label>
                 </div>
                 <div>
-                    <button id="login-submit" type="submit" class="btn btn-info my-btn confirm-btn">Login</button>
+                    <button id="login-submit" type="submit" class="btn btn-info my-btn">Login</button>
                 </div>
             </div>
            
+            @if (_environment.IsDevelopment())
+            {  
+                <section class="my-login-section">
+                    <hr />
+                    <p>info@ticketmaster.se - Organizer</p>
+                    <p>hagman.pia@gmail.com - Admin</p>
+                    <p>johan@gmail.com - User who has applied to become organizer</p>
+                    <p>marta@gmail.com - User</p>
+                    <p>Password for all - *Ett2345 </p>
+                    <hr />
+                </section>
+            }
+
             <div class="login-extra-links">
                 <p>
                     <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
