@@ -21,6 +21,7 @@
                     <th scope="col">Time</th>
                     <th scope="col">Location</th>
                     <th scope="col">Organizer</th>
+                   
                 </tr>
                 </thead>
             <tbody>
@@ -33,6 +34,11 @@
                         <td>@item.Date.ToShortTimeString()</td>
                         <td>@item.Place</td>
                         <td>@item.Organizer.UserName</td>
+                        <td>
+                            <form method="post" asp-route-userId="@attendeeId" asp-route-eventId="@item.Id">
+                                <button class="btn btn-info my-btn confirm-btn">Cancel Booking</button>
+                            </form>
+                        </td>
                     </tr>
 }
 

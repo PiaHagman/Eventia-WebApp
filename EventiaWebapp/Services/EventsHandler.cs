@@ -57,6 +57,26 @@ namespace EventiaWebapp.Services
             return false;
         }
 
+        public async Task<bool> CancelEvent(int eventId, string id)
+        {
+
+            var evnt = await ctx.Events
+                .FirstOrDefaultAsync(e => e.Id == eventId);
+
+            if (evnt is not null)
+            {
+                var attendee = await ctx.Users
+                    .Include(eu => eu.JoinedEvents)
+                    .FirstOrDefaultAsync(u => u.Id == id);
+
+                if (attendee != null) attendee.JoinedEvents.Remove(evnt);
+
+                await ctx.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
         public async Task <List<Event>?> GetMyEvents(string id)
         {
             var attendee = await GetAttendee(id);

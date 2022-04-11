@@ -151,7 +151,7 @@ header {
     font-weight: normal;
 }
 
-.accordion-button:focus {
+.accordion-button:focus, my-btn:focus {
     border: none;
     color: #5b0e2d;
     box-shadow: none;
@@ -169,11 +169,15 @@ header {
 
 }
 
+.list-title {
+    margin-bottom: 20px;
+}
+
 .my-card {
     margin-bottom: 25px;
     width: 800px;
     text-align: center;
- /*   display: flex;
+    /*   display: flex;
     align-items: center;*/
 }
 
@@ -199,6 +203,10 @@ header {
 }
 .my-row {
     max-width: 400px;
+}
+
+th, td {
+    vertical-align: middle;
 }
 
 #registerForm, #account #personalData{
