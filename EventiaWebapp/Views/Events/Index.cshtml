@@ -8,6 +8,7 @@
 @{
     int counter = 0;
     <div class="my-container">
+        <div><h1>Upcoming Events</h1></div>
         <div class="accordion accordion-flush my-accordion" id="accordionFlushExample">
             @foreach (var item in eventList)
             {
@@ -22,7 +23,7 @@
                             <p>@item.Description</p>
                             <div class="accordion-eventDetails">
                                 <p><b>@item.Place</b>&emsp;<b>|</b>&emsp;@item.Date.ToShortTimeString()&emsp;<b>|</b>&emsp;@item.Date.ToShortDateString()</p>
-                                <a class="btn btn-info my-btn" asp-page="/Join" asp-route-eventId="@item.Id">Join</a> 
+                                <a class="btn btn-info my-btn" asp-page="/Join" asp-route-eventId="@item.Id">Join</a>
                             </div>
                         </div>
                     </div>

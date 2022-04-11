@@ -30,17 +30,29 @@
                 <p class="card-text">@Model.Evnt.Description</p>
                 <p><i>Tickets available: @Model.Evnt.SeatsAvailable</i></p>
                 
-                @if (evntAlreadyBooked)
+                @if (User.IsInRole("administrator"))
                 {
-                    <p><b>You are already booked to this event!</b></p>
-                    <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" asp-action="MyEvents">My Events</a>
+                    <p><b>Events cannot be booked as administrator.</b></p>
                 }
-                else
+                @if (User.IsInRole("organizer"))
                 {
-                    <form method="post" asp-route-evtId="@Model.Evnt.Id">
-                        <button class="btn btn-info my-btn confirm-btn">Confirm Booking</button>
-                    </form>
+                    <p><b>Events cannot be booked as organizer.</b></p>
                 }
+                @if (User.IsInRole("user"))
+                {
+                    @if (evntAlreadyBooked)
+                    {
+                        <p><b>You are already booked to this event!</b></p>
+                        <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" asp-action="MyEvents">My Events</a>
+                    }
+                    else
+                    {
+                        <form method="post" asp-route-evtId="@Model.Evnt.Id">
+                            <button class="btn btn-info my-btn confirm-btn">Confirm Booking</button>
+                        </form>
+                    }
+                }
+                
             </div>
                 <div class="card-footer text-muted">
                     <p>@Model.Evnt.Date.ToShortDateString() - @Model.Evnt.Date.ToShortTimeString()  &emsp; <b>|</b> &emsp; @Model.Evnt.Place   &emsp;<b>|</b>&emsp;   @Model.Evnt.Organizer.OrganizerName </p>

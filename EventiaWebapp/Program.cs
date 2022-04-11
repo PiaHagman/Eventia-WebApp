@@ -93,11 +93,11 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsDevelopment())
     {
-        await database.CreateAndSeedIfNotExist();
+        //await database.CreateAndSeedIfNotExist();
         app.UseDeveloperExceptionPage();
     }
 
-    //await database.RecreateAndSeed();
+    await database.RecreateAndSeed();
 }
 
 #endregion

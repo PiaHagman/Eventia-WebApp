@@ -1,10 +1,12 @@
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EventiaWebapp.Pages
 {
+    [Authorize(Roles = "user")]
     public class ConfirmedEventModel : PageModel
     {
 

@@ -1,4 +1,3 @@
-//Varför inte kunna flytta denna till viewImports?
 using EventiaWebapp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

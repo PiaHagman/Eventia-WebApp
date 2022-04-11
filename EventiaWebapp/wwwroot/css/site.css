@@ -115,6 +115,7 @@ header {
 
 .my-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 80px 0;
@@ -172,11 +173,14 @@ header {
     margin-bottom: 25px;
     width: 800px;
     text-align: center;
-    display: flex;
-    align-items: center;
+ /*   display: flex;
+    align-items: center;*/
 }
 
     .my-card h3, .my-card p {
+        width: 800px;
+        box-sizing: border-box;
+        flex: 1 1 auto;
         padding: 0px 70px;
         color: #5b0e2d;
     }
@@ -200,7 +204,6 @@ header {
 #registerForm, #account #personalData{
     display: flex;
     flex-direction: column;
-    
 }
 
     #registerForm > *,
@@ -215,8 +218,9 @@ header {
     #account button,
     #profile-form button,
     #email-form button,
-    #change-password-form button{
-        align-self: flex-end;
+    #change-password-form button,
+    #update-profile-button {
+        float: right;
         margin-top: 15px;
         margin-right: 0;
     }
@@ -224,6 +228,13 @@ header {
 #personalData {
     max-width: 400px;
 }
+
+.my-account-nav {
+    display: flex;
+    flex-direction: column;
+    margin-right: 300px;
+}
+
 .space-between {
     display: flex;
     flex-direction: row;
