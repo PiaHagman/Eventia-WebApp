@@ -97,7 +97,9 @@ using (var scope = app.Services.CreateScope())
         app.UseDeveloperExceptionPage();
     }
 
-    await database.RecreateAndSeed();
+    await database.Recreate();
+    await database.Seed();
+
 }
 
 #endregion

@@ -39,12 +39,9 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "First Name")]
-            public string FirstName { get; set; }
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
 
-            [Required]
-            [Display(Name = "Last Name")]
-            public string LastName { get; set; }
 
             [Required]
             [EmailAddress]
@@ -76,7 +73,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
 
-                var user = new EventiaUser { UserName = Input.Email, Email = Input.Email };
+                var user = new EventiaUser { UserName = Input.UserName, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 
                 if (result.Succeeded)

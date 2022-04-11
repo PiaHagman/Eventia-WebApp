@@ -6,19 +6,9 @@ namespace EventiaWebapp.Models
 {
     public class EventiaUser : IdentityUser
     {
-       public string? FirstName { get; set; }
-       public string? LastName { get; set; }
-
-       public string? OrganizerName { get; set; }
-
-       
         public Application? Application { get; set; }
         public ICollection <Event>? HostedEvents { get; set; }
         public ICollection<Event>? JoinedEvents { get; set; }
-        
-
-        
-
 
     }
 }

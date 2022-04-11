@@ -125,10 +125,10 @@ namespace EventiaWebapp.Services
 
             List<EventiaUser> eventiaUsers = new List<EventiaUser>
             {
-                new() {OrganizerName = "TicketMaster", Email = "info@ticketmaster.se", UserName = "info@ticketmaster.se", HostedEvents = ticketMasterEvents},
-                new() {FirstName = "Pia", LastName = "Hagman", Email = "hagman.pia@gmail.com", UserName = "hagman.pia@gmail.com"},
-                new() {FirstName = "Johan", LastName = "Fahlgren", Email = "johan@gmail.com", UserName = "johan@gmail.com", JoinedEvents = johansJoinedEvents, Application = new Application()},
-                new() {FirstName = "Märta", LastName = "Hjalmarson", Email = "marta@gmail.com", UserName = "marta@gmail.com", JoinedEvents = märtasJoinedEvents }
+                new() {Email = "info@ticketmaster.se", UserName = "Ticketmaster", HostedEvents = ticketMasterEvents},
+                new() {Email = "hagman.pia@gmail.com", UserName = "AdminPia"},
+                new() {Email = "johan@gmail.com", UserName = "Johan", JoinedEvents = johansJoinedEvents, Application = new Application()},
+                new() {Email = "marta@gmail.com", UserName = "Märta", JoinedEvents = märtasJoinedEvents }
             };
 
             List<IdentityRole> roles = new List<IdentityRole>
@@ -139,6 +139,8 @@ namespace EventiaWebapp.Services
             };
 
             await _ctx.AddRangeAsync(events);
+            await _ctx.SaveChangesAsync();
+
             await _userManager.CreateAsync(eventiaUsers[0], "*Ett2345");
             await _userManager.CreateAsync(eventiaUsers[1], "*Ett2345");
             await _userManager.CreateAsync(eventiaUsers[2], "*Ett2345");
@@ -152,8 +154,6 @@ namespace EventiaWebapp.Services
             await _userManager.AddToRoleAsync(eventiaUsers[1], $"{roles[2]}"); //Pia = Administrator
             await _userManager.AddToRoleAsync(eventiaUsers[2], $"{roles[0]}"); //Johan = Attendee
             await _userManager.AddToRoleAsync(eventiaUsers[3], $"{roles[0]}"); //Märta = Attendee
-
-            await _ctx.SaveChangesAsync();
         }
     }
 }
