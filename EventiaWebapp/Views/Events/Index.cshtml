@@ -8,9 +8,12 @@
 @{
     int counter = 0;
     <div class="my-container">
-        <div>
-            <h1 class="list-title">Upcoming Events</h1></div>
+        
         <div class="accordion accordion-flush my-accordion" id="accordionFlushExample">
+            <div class="list-img">
+                <h1 class="list-title">Upcoming Events</h1>
+            </div>
+            
             @foreach (var item in eventList)
             {
                 <div class="accordion-item">

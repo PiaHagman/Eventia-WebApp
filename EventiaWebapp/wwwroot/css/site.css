@@ -171,7 +171,9 @@ header {
 
 .my-accordion {
     width: 80%;
-    background-color: #ffccb0;
+    background-color: #f2dac2;
+    margin-bottom: 40px;
+    ;
 }
 
 .accordion-button:not(.collapsed) {
@@ -179,14 +181,12 @@ header {
     color: #5b0e2d;
     font-weight: normal;
 }
-
 .accordion-button:focus, my-btn:focus {
     border: none;
     color: #5b0e2d;
     box-shadow: none;
     font-weight: bold;
 }
-
 .accordion-button::after {
     font-weight: normal;
 }
@@ -197,30 +197,42 @@ header {
     padding-right: 50px;
 
 }
-
 .list-title {
+    padding: 30px 40px;
+}
+.list-img {
+    /*width: 100%;*/
+    height: 300px;
+    background-image: url("../images/events.jpg");
+    background-size: cover;
+    margin-top: 40px;
+
+}
+.my-events-img {
+    height: 300px;
+    background-image: url("../images/myevents.jpg");
+    background-size: cover;
     margin-bottom: 20px;
 }
-
 .my-card {
-    margin-bottom: 25px;
+    margin: 80px 0;
     width: 800px;
     text-align: center;
-
 }
-
-    .my-card h3, .my-card p {
+.join-img {
+        width: 100%;
+        height: 400px;
+    }
+.my-card h3, .my-card p {
         width: 800px;
         box-sizing: border-box;
         flex: 1 1 auto;
         padding: 0px 70px;
         color: #5b0e2d;
     }
-
-    .my-card h1 {
+.my-card h1 {
         margin: 20px;
     }
-
 .card-header, .card-footer {
     padding-top: 20px;
 }
@@ -228,6 +240,10 @@ header {
 .my-eventlist {
     padding: 10px;
     width: 1000px;
+    margin: 80px 0;
+}
+.my-eventlist td {
+    padding: 0;
 }
 .my-row {
     max-width: 400px;
@@ -242,16 +258,14 @@ th, td {
     flex-direction: column;
 
 }
-
-    #registerForm > *,
+#registerForm > *,
     #account > *,
     #profile-form > *,
     #email-form > *,
     #change-password-form > * {
         margin: 5px 0px;
     }
-
-    #registerForm button,
+#registerForm button,
     #account button,
     #profile-form button,
     #email-form button,
@@ -288,9 +302,9 @@ th, td {
     margin-top: 20px;
 }
 
-.my-managepages-container {
+/*.my-managepages-container {
     padding: 0;
-}
+}*/
 
 .my-manage-users-container {
     margin-top: 15px;
@@ -300,19 +314,26 @@ th, td {
     text-align: center;
     font-size: small;
 }
+.account-data {
+    max-width: 525px;
+}
 
-    footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 80px;
-        background-color: #ccb8a4;
-        max-width: 1200px;
-    }
+.my-col-md-3 {
+    max-width: 180px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80px;
+    background-color: #ccb8a4;
+    max-width: 1200px;
+}
 
 footer a {
     font-size: smaller;

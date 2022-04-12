@@ -5,12 +5,13 @@
     ViewData["ActivePage"] = "";
 }
 <div class="my-managepages-container">
-    <div>
+    <div class="row">
+        <div class="account-data">
         @if (User.IsInRole("user"))
         {
             <p>Here you can apply for Organizer-status and be able to add your own events to this page.</p>
             <form method="post">
-                <button type="submit" class="btn btn-info my-btn confirm-btn">Apply for Organizer status</button>
+                <button style="float: right;" type="submit" class="btn btn-info my-btn confirm-btn">Apply for Organizer status</button>
             </form>
         }
         else if (User.IsInRole("organizer"))
@@ -21,6 +22,6 @@
         {
             <p>You are already an assigned Administrator.</p>
         }
-
+        </div>
     </div>
 </div>

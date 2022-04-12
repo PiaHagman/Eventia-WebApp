@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace EventiaWebapp.Areas.Identity.Pages.Account
 {
@@ -14,7 +15,9 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
         private readonly UserManager<EventiaUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<EventiaUser> signInManager, UserManager<EventiaUser> userManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<EventiaUser> signInManager, 
+            UserManager<EventiaUser> userManager, 
+            ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -58,6 +61,12 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(Input.Email);
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    return Page();
+                }
+
                 var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 
                 if (result.Succeeded)

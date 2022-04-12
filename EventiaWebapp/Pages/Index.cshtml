@@ -44,7 +44,7 @@
                 <button type="submit" class="btn btn-info my-btn confirm-btn">Add Event</button>
             </form>
         }
-        @if (User.IsInRole("organizer"))
+        @if (User.IsInRole("user"))
         {
             <form class="form-inline" asp-controller="Events" asp-action="MyEvents">
                 <button type="submit" class="btn btn-info my-btn confirm-btn">My events</button>

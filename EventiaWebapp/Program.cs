@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 //TODO Edit events by organizer
 //TODO Fix default [Autorize] in program.cs
 //TODO Merga in bransch
+//TODO Fix så att en kan lägga till egen bild till event
 
 #region Konfigurering
 

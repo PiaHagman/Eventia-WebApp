@@ -59,6 +59,7 @@ namespace EventiaWebapp.Services
                 {
                     new()
                     {
+                        Image = "../images/veronica.jpg",
                         Title = "Veronica Maggio",
                         Description =
                             "Veronica Maggio är en av landets största popstjärnor och ligger bakom stora hits som ”Hela huset”, ”Sergels torg”, ”Jag kommer” och ”Välkommen in”",
@@ -68,6 +69,7 @@ namespace EventiaWebapp.Services
                     },
                     new()
                     {
+                        Image = "../images/laleh.jpg",
                         Title = "Laleh",
                         Description =
                             "Ingen annan artist representerar hela Sverige på samma storslagna sätt som Laleh, med sina nu dussintals hits som känns lika klassiska som moderna. ”Live Tomorrow”, ”En Stund På Jorden”, ”Some Die Young”, ”Bara Få Va Mig Själv”, ”Goliat” och nu senast ”Det kommer bli bra”!",
@@ -78,6 +80,7 @@ namespace EventiaWebapp.Services
                     },
                     new()
                     {
+                        Image = "../images/gaga.jpg",
                         Title = "Lady Gaga",
                         Description =
                             "Lady Gaga, som både vunnit Grammys och Golden Globe samt nominerats till en Oscar, är en helt unik artist. Hon har sålt över 30 miljoner album och 150 miljoner singlar, vilket gör henne till en av de bäst säljande artisterna genom tiderna. ",
@@ -88,6 +91,7 @@ namespace EventiaWebapp.Services
                     },
                     new()
                     {
+                        Image = "../images/melody.jpg",
                         Title = "Melody Gardot",
                         Description =
                             "Melody behöver ingen närmare presentation för Sverige. Hon har själv på ett utomordentligt sätt presenterat sig för den svenska publiken under de senaste åren via sina album, TV-program och flera utsålda och hyllade konserter. ",
@@ -98,6 +102,7 @@ namespace EventiaWebapp.Services
                     },
                     new()
                     {
+                        Image = "../images/miriam.jpg",
                         Title = "Miriam Bryant",
                         Description =
                             "Efter en längtan att spela live inför en publik igen ger sig Miriam Bryant äntligen ut på vägarna tillsammans med sitt band i början av nästa år. När hon återvänder till Scandinavium är det med den senaste skivan ”PS jag hatar dig” i bagaget. Albumet är hennes första på svenska där hon återigen bevisar sin styrka i både sång och text.",
@@ -108,11 +113,12 @@ namespace EventiaWebapp.Services
                     },
                     new()
                     {
+                        Image = "../images/molly.jpg",
                        Title = "Molly Sandén",
                         Description =
                             "Efter Oscarsuccén med hyllningar världen över släppte Molly Sandén i början av maj sitt tredje album på svenska, DOM SKA VETA (MILKSHAKE/Sony Music). Ett album på elva spår med tidigare släppta låtar som Jag mår bra nu, Kärlek slutar alltid med bråk och Nån annan nu. ",
                         Place = "GÖTEBORG - Scandinavium",
-                        Date = new DateTime(2022, 03, 17, 18, 30, 00),
+                        Date = new DateTime(2022, 08, 17, 18, 30, 00),
                         SeatsAvailable = 20000,
                         
                     },

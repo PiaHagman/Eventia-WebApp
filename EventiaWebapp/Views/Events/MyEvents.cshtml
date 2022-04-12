@@ -12,7 +12,9 @@
 
     <div class="my-container">
         <div class="card my-eventlist">
-            <h1>Booked Events</h1>
+            <div class="my-events-img">
+                <h1 class="list-title">Booked Events</h1>
+            </div>
             <table class="table">
                 <thead>
                 <tr>
@@ -21,10 +23,10 @@
                     <th scope="col">Time</th>
                     <th scope="col">Location</th>
                     <th scope="col">Organizer</th>
-                   
+
                 </tr>
                 </thead>
-            <tbody>
+                <tbody>
 
                 @foreach (var item in myEventList)
                 {
@@ -40,7 +42,7 @@
                             </form>
                         </td>
                     </tr>
-}
+                }
 
                 </tbody>
             </table>
