@@ -9,17 +9,12 @@ using Microsoft.EntityFrameworkCore;
 //TODO Check if there are available seats and decrease number og available seats
 //TODO Check how to use _viewImports better
 //TODO Write report
-//TODO Use ILogger and handle "nullable-situations"/Error-handling
 //TODO Make sure that database is not deleted before start 
-//TODO Be able to unbook events
-//TODO UserName in header - name instead
-//TODO Add username to regisitration
-//TODO _signInManager.IsSignedIn vs User.Identity.IsAuthenticated => Been using both types in _Layout.cshtml
-//TODO Skillnad?
-            /*< p > Logged in as: @User.Identity.Name </ p >
-            < p > @_userManager.GetUserName(User) </ p >*/
+//TODO Button add Event on Organize event page
+//TODO Add pics to events
+//TODO Edit events by organizer
 //TODO Fix default [Autorize] in program.cs
-//TODO MErga in bransch
+//TODO Merga in bransch
 
 #region Konfigurering
 
@@ -62,7 +57,7 @@ var app = builder.Build();
 app.UseStaticFiles(); //Ska helst ligga tidigt så slipper vi gå vidare om sidan som efterfrågas är statisk.
 app.UseRouting();
 
-//Middleware-steg som tillhör Identity-paketet. M�ste ligga efter UseRouting och i den ordningen som de st�r nu.
+//Middleware-steg som tillhör Identity-paketet. M�ste ligga efter UseRouting och i den ordningen som de står nu.
 app.UseAuthentication(); 
 app.UseAuthorization();
 

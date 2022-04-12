@@ -39,7 +39,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Username")]
+            [Display(Name = "Alias or Organizer name")]
             public string UserName { get; set; }
 
 

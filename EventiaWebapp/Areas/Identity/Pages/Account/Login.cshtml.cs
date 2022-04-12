@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using EventiaWebapp.Models;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,17 +11,18 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<EventiaUser> _signInManager;
+        private readonly UserManager<EventiaUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<EventiaUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<EventiaUser> signInManager, UserManager<EventiaUser> userManager, ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _logger = logger;
         }
 
         [BindProperty]
         public InputModel Input { get; set; }
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
         public string ReturnUrl { get; set; }
         [TempData]
         public string ErrorMessage { get; set; }
@@ -31,7 +31,7 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
         {
             [Required]
             [EmailAddress]
-            public string UserName { get; set; }
+            public string Email { get; set; }
 
             [Required]
             [DataType(DataType.Password)]
@@ -57,7 +57,9 @@ namespace EventiaWebapp.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var user = await _userManager.FindByEmailAsync(Input.Email);
+                var result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

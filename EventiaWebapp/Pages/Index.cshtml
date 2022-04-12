@@ -6,13 +6,23 @@
     ViewData["Title"] = "Welcome";
 }
 
-
-<div class="my-container">
+<div class="my-container top-banner">
     <div class="main-content">
-        <div class="img-with-text">
-            <img src="images/eventia.jpg"/>
-            <h1>Up for this?</h1>
-        </div>
+        @*<div class="img-with-text">*@
+        @*<img src="images/eventia.jpg"/>*@
+        
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <h1>Eventia - Up For This?</h1>
+        }
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <h1>Welcome</h1>
+            <h5><b>@User.Identity.Name</b></h5>
+        }
+
+        
+        @*</div>*@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus officiis reiciendis facere tempore
             consequatur esse harum praesentium, corrupti aliquid maiores commodi? Maiores architecto officiis
             sapiente voluptas sit, quam itaque laboriosam et, deleniti aperiam temporibus magni tempore repellendus
@@ -22,15 +32,27 @@
             quae doloribus vero at cumque, harum fugiat laboriosam!
         </p>
 
-        @if (SignInManager.IsSignedIn(User))
+        @if (User.IsInRole("administrator"))
         {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index")">
-                <button type="submit" class="btn btn-info my-btn">Logout</button>
+            <form class="form-inline" asp-page="/ManageUsers">
+                <button type="submit" class="btn btn-info my-btn confirm-btn">Manage Users</button>
             </form>
         }
-        else
+        @if (User.IsInRole("organizer"))
         {
-            <a class="btn btn-info my-btn confirm-btn" asp-controller="Events">Find your first event!</a>
+            <form class="form-inline" asp-page="/AddEvent">
+                <button type="submit" class="btn btn-info my-btn confirm-btn">Add Event</button>
+            </form>
+        }
+        @if (User.IsInRole("organizer"))
+        {
+            <form class="form-inline" asp-controller="Events" asp-action="MyEvents">
+                <button type="submit" class="btn btn-info my-btn confirm-btn">My events</button>
+            </form>
+        }
+        @if (!SignInManager.IsSignedIn(User))
+        {
+            <a class="btn btn-info my-btn confirm-btn" asp-controller="Events">Find events!</a>
             
         }
 

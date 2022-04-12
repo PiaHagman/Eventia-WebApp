@@ -128,7 +128,7 @@ namespace EventiaWebapp.Services
                 new() {Email = "info@ticketmaster.se", UserName = "Ticketmaster", HostedEvents = ticketMasterEvents},
                 new() {Email = "hagman.pia@gmail.com", UserName = "AdminPia"},
                 new() {Email = "johan@gmail.com", UserName = "Johan", JoinedEvents = johansJoinedEvents, Application = new Application()},
-                new() {Email = "marta@gmail.com", UserName = "Märta", JoinedEvents = märtasJoinedEvents }
+                new() {Email = "marta@gmail.com", UserName = "Marta", JoinedEvents = märtasJoinedEvents }
             };
 
             List<IdentityRole> roles = new List<IdentityRole>
