@@ -7,7 +7,8 @@
  }
  <div class="my-container">
      <div class="card my-eventlist">
-         <h1>Organize Events</h1>
+         <h3>Organize Events</h3>
+         <p>This is where you can delete or edit an event.</p>
          <table class="table">
              <thead>
              <tr>
@@ -26,6 +27,12 @@
                      <td>@item.Date.ToShortDateString()</td>
                      <td>@item.Date.ToShortTimeString()</td>
                      <td>@item.Place</td>
+                     <td>
+                         <form method="post" asp-route-evtId="@item.Id">
+                             <button class="btn btn-info my-btn">Edit</button>
+                         </form>
+                     </td>
+                     
                  </tr>
              }
 

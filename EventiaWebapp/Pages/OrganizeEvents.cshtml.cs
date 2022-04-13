@@ -36,5 +36,12 @@ namespace EventiaWebapp.Pages
                 _logger.LogError("Event is missing");
             }
         }
+
+        public IActionResult OnPost(int evtId)
+        {
+            return RedirectToPage("/EditEvent", new { eventId = evtId });
+
+        }
+        
     }
 }

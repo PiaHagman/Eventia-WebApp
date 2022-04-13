@@ -25,6 +25,18 @@ namespace EventiaWebapp.Services
             return eventList;
         }
 
+        public async Task<Event> GetEvent(int eventId)
+        {
+            var evt = await ctx.Events
+                .FirstOrDefaultAsync(e => e.Id == eventId);
+           
+            if (evt == null)
+            {
+                return null;
+            }
+            return evt;
+        }
+
         public async Task<EventiaUser> GetAttendee(string userId)
         {
             var query = ctx.Users
