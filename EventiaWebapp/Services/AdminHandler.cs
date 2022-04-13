@@ -34,33 +34,45 @@ namespace EventiaWebapp.Services
             return usersList;
         }
 
-        public async Task <bool> UpgradeToOrganizer(string userId)
+        public async Task <bool> ChangeRole(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            await _userManager.RemoveFromRoleAsync(user, "user");
-            await _userManager.AddToRoleAsync(user, "organizer");
-
-            var userWithApplication = await _ctx.Users
-                .Include(eu => eu.Application)
-                .FirstOrDefaultAsync(eu => eu.Id == userId);
             
-            if (userWithApplication == null)
+            var roles = await _userManager.GetRolesAsync(user);
+
+            if (roles[0] == "organizer")
             {
-                return false;
+                await _userManager.RemoveFromRoleAsync(user, "organizer");
+                await _userManager.AddToRoleAsync(user, "user");
             }
 
-            var application = await _ctx.Applications
-                .Include(a => a.Applicants)
-                .FirstOrDefaultAsync(a => a.Id == userWithApplication.Application.Id);
-
-            if (application == null)
+            if (roles[0] == "user")
             {
-                return false;
-            }
+                await _userManager.RemoveFromRoleAsync(user, "user");
+                await _userManager.AddToRoleAsync(user, "organizer");
 
-            _ctx.Remove(application);
+                var userWithApplication = await _ctx.Users
+                    .Include(eu => eu.Application)
+                    .FirstOrDefaultAsync(eu => eu.Id == userId);
+
+                if (userWithApplication == null)
+                {
+                    return false;
+                }
+
+                var application = await _ctx.Applications
+                    .Include(a => a.Applicants)
+                    .FirstOrDefaultAsync(a => a.Id == userWithApplication.Application.Id);
+
+                if (application == null)
+                {
+                    return false;
+                }
+
+                _ctx.Remove(application);
+            }
+            
             await _ctx.SaveChangesAsync();
-            
             return true;
         }
     }

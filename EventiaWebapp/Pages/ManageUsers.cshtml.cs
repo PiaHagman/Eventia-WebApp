@@ -32,7 +32,7 @@ namespace EventiaWebapp.Pages
 
         public async Task <IActionResult> OnPost(string userId)
         {
-            bool isOrganizer = await _adminHandler.UpgradeToOrganizer(userId);
+            bool isOrganizer = await _adminHandler.ChangeRole(userId);
 
             if (isOrganizer)
             {
