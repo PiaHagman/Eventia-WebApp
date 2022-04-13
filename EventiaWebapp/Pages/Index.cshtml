@@ -31,21 +31,15 @@
 
         @if (User.IsInRole("administrator"))
         {
-           <form class="form-inline" asp-page="/ManageUsers">
-                <button type="submit" class="btn btn-info my-btn confirm-btn">Manage Users</button>
-            </form>
+           <a class="btn btn-info my-btn confirm-btn" asp-page="/ManageUsers">Manage Users</a>
         }
         @if (User.IsInRole("organizer"))
         {
-            <form class="form-inline" asp-page="/AddEvent">
-                <button type="submit" class="btn btn-info my-btn confirm-btn">Add Event</button>
-            </form>
+            <a class="btn btn-info my-btn confirm-btn" asp-page="/AddEvent">Add Event </a>
         }
         @if (User.IsInRole("user"))
         {
-            <form class="form-inline" asp-controller="Events" asp-action="MyEvents">
-                <button type="submit" class="btn btn-info my-btn confirm-btn">My events</button>
-            </form>
+            <a class="btn btn-info my-btn confirm-btn" asp-controller="Events" asp-action="MyEvents">My Events</a>
         }
         @if (!SignInManager.IsSignedIn(User))
         {

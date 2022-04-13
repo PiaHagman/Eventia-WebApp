@@ -7,8 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 
 //TODO Check if there are available seats and decrease number og available seats
-//TODO Fix default [Autorize] in program.cs
+//TODO Fix default [Authorize] in program.cs
 //TODO Organizers should be able to add a picture when adding a new event.
+//TODO If request for organizer has been sent, this alternative should not be visible under My Account
+//TODO Improve error-handling
 
 #region Konfigurering
 
