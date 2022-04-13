@@ -125,7 +125,6 @@ namespace EventiaWebapp.Services
                 };
 
             var ticketMasterEvents = new List<Event> { events[0], events[1], events[2], events[3], events[4], events[5]};
-            var johansJoinedEvents = new List<Event> { events[2], events[3]};
             var märtasJoinedEvents = new List<Event> { events[4], events[5]};
 
 
@@ -133,7 +132,7 @@ namespace EventiaWebapp.Services
             {
                 new() {Email = "info@ticketmaster.se", UserName = "Ticketmaster", HostedEvents = ticketMasterEvents},
                 new() {Email = "hagman.pia@gmail.com", UserName = "AdminPia"},
-                new() {Email = "johan@gmail.com", UserName = "Johan", JoinedEvents = johansJoinedEvents, Application = new Application()},
+                new() {Email = "johan@gmail.com", UserName = "JohansEvents", Application = new Application()},
                 new() {Email = "marta@gmail.com", UserName = "Marta", JoinedEvents = märtasJoinedEvents }
             };
 

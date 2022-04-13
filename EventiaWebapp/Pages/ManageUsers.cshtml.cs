@@ -11,7 +11,7 @@ namespace EventiaWebapp.Pages
     [Authorize(Roles = "administrator")]
     public class ManageUsersModel : PageModel
     {
-        public AdminHandler _adminHandler;
+        private readonly AdminHandler _adminHandler;
         private readonly ILogger<ManageUsersModel> _logger;
 
         public ManageUsersModel(AdminHandler adminHandler,  
@@ -24,10 +24,10 @@ namespace EventiaWebapp.Pages
         public List<EventiaUser> UserApplyingForOrganizer { get; set; }
         public List<EventiaUser> EventiaUsersList { get; set; }
 
-        public void OnGet()
+        public async Task OnGet()
         {
-            EventiaUsersList = _adminHandler.GetEventiaUsers();
-            UserApplyingForOrganizer = _adminHandler.GetUsersWithApplication();
+            EventiaUsersList = await _adminHandler.GetEventiaUsers();
+            UserApplyingForOrganizer = await _adminHandler.GetUsersWithApplication();
         }
 
         public async Task <IActionResult> OnPost(string userId)

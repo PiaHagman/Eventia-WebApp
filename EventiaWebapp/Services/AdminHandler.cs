@@ -17,19 +17,19 @@ namespace EventiaWebapp.Services
             _userManager = userManager;
         }
 
-        public List<EventiaUser> GetEventiaUsers()
+        public async Task<List<EventiaUser>>  GetEventiaUsers()
         {
-            var users = _ctx.Users
-                .ToList();
+            var users = await _ctx.Users
+                .ToListAsync();
             return users;
         }
 
-        public List<EventiaUser> GetUsersWithApplication()
+        public async Task<List<EventiaUser>> GetUsersWithApplication()
         {
-            var usersList = _ctx.Users
+            var usersList = await _ctx.Users
                 .Include(eu => eu.Application)
                 .Where(eu => eu.Application != null)
-                .ToList();
+                .ToListAsync();
             
             return usersList;
         }

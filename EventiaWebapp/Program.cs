@@ -7,15 +7,11 @@ using Microsoft.EntityFrameworkCore;
 
 
 //TODO Check if there are available seats and decrease number og available seats
-//TODO Check how to use _viewImports better
-//TODO Write report
 //TODO Make sure that database is not deleted before start 
-//TODO Button add Event on Organize event page
-//TODO Add pics to events
-//TODO Edit events by organizer
 //TODO Fix default [Autorize] in program.cs
 //TODO Merga in bransch
-//TODO Fix så att en kan lägga till egen bild till event
+//TODO Orgnizers should be able to add a picture when adding a new event.
+//TODO Manage-users-knapp fungerar inte på admin-index
 
 #region Konfigurering
 
@@ -83,18 +79,18 @@ using (var scope = app.Services.CreateScope())
 
     if (app.Environment.IsProduction())
     {
-        await database.Migrate();
+        //await database.Migrate();
+        await database.CreateIfNotExists();
         app.UseExceptionHandler("/Error");
     }
 
     if (app.Environment.IsDevelopment())
     {
-        //await database.CreateAndSeedIfNotExist();
+        await database.CreateAndSeedIfNotExist();
         app.UseDeveloperExceptionPage();
     }
 
-    await database.Recreate();
-    await database.Seed();
+    
 
 }
 

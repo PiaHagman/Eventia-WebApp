@@ -32,6 +32,9 @@ på github så skulle ju eventen försvinna ett efter ett).
 * Förbättra användningen av `_viewImports.cshtml`-filerna. Jag försökte flytta över using-rader, men tyckte inte alltid att det lyckades.
 * Låta organisatören ladda upp bilder till sitt event.
 * Bättre felhantering. Jag har lagt in ILogger i mitt projekt, men jag är inte helt säker på att jag använder det på ett effektivt sätt. Jag skulle behöva bli bättre på att kasta undantag och try/catch-satser.
+* Titta över och förbättra funktionen för en del av de scaffoldade sidorna under MyAccount.
+* Bättre söknings/sorteringsmöjligheter i listor.
+* Påbörjade delete-funktion på Edit Event. Knappen fungerar, men hanterar inga felvärden eller dubbelkollar att den som klickar VERKLIGEN vill ta bort eventet.
 * m.m.
 
 

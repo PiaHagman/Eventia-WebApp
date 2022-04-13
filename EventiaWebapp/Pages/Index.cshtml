@@ -20,9 +20,6 @@
             <h1>Welcome</h1>
             <h5><b>@User.Identity.Name</b></h5>
         }
-
-        
-        @*</div>*@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus officiis reiciendis facere tempore
             consequatur esse harum praesentium, corrupti aliquid maiores commodi? Maiores architecto officiis
             sapiente voluptas sit, quam itaque laboriosam et, deleniti aperiam temporibus magni tempore repellendus
@@ -34,7 +31,7 @@
 
         @if (User.IsInRole("administrator"))
         {
-            <form class="form-inline" asp-page="/ManageUsers">
+           <form class="form-inline" asp-page="/ManageUsers">
                 <button type="submit" class="btn btn-info my-btn confirm-btn">Manage Users</button>
             </form>
         }
@@ -52,7 +49,7 @@
         }
         @if (!SignInManager.IsSignedIn(User))
         {
-            <a class="btn btn-info my-btn confirm-btn" asp-controller="Events">Find events!</a>
+            <a class="btn btn-info my-btn confirm-btn" asp-controller="Events">Find your next event!</a>
             
         }
 

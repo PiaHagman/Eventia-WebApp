@@ -1,12 +1,13 @@
 ﻿@page
 @model EventiaWebapp.Pages.AddEventModel
 @{
-    ViewData["Title"] = "Add new Event";
+    ViewData["Title"] = "Add Event";
 }
 <div class="my-container">
    
     <div class="row my-row">
-        <h1>@ViewData["Title"]</h1>
+        <h3>Add Event</h3>
+        <p>This is where you can add a new event.</p>
         <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
             <h4>Fill out information about your event.</h4>
             <hr/>

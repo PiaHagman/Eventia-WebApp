@@ -64,14 +64,14 @@
                         <td>@item.Email</td>
                         <td>@roles[0]</td>
                     
-                    @if (roles[0] == "organizer")
-                    {
-                        <td>
-                            <form method="post" asp-route-userId="@item.Id">
-                                <button class="btn btn-info my-btn confirm-btn">Remove organizer</button>
-                            </form>
-                        </td>
-                    }
+                        @if (roles[0] == "organizer")
+                        {
+                            <td>
+                                <form method="post" asp-route-userId="@item.Id">
+                                    <button class="btn btn-info my-btn confirm-btn">Remove organizer</button>
+                                </form>
+                            </td>
+                        }
                     </tr>
                 }
 
