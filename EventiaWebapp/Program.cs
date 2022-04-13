@@ -1,17 +1,14 @@
 using EventiaWebapp.Models;
 using EventiaWebapp.Services;
 using EventiaWebapp.Services.Data;
-    using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
 //TODO Check if there are available seats and decrease number og available seats
-//TODO Make sure that database is not deleted before start 
 //TODO Fix default [Autorize] in program.cs
-//TODO Merga in bransch
-//TODO Orgnizers should be able to add a picture when adding a new event.
-//TODO Manage-users-knapp fungerar inte på admin-index
+//TODO Organizers should be able to add a picture when adding a new event.
 
 #region Konfigurering
 
